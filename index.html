@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Land Litigation Management System | DLLMS — Government of India</title>
+  <meta name="description" content="Official portal for Digital Land Litigation Management — file cases, track status, upload documents, and access land dispute records online."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Serif:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ============================================================
+   DIGITAL LAND LITIGATION MANAGEMENT SYSTEM — DLLMS v2.0
+   Government of India | Ministry of Land Records & Revenue
+   ============================================================ */
+
+/* ─── ROOT VARIABLES ─── */
+:root {
+  --navy:     #002f6c;
+  --blue:     #1a4f8a;
+  --sky:      #1e73be;
+  --skylt:    #d6e8f8;
+  --accent:   #e8a000;
+  --accentlt: #fff4d9;
+  --green:    #1a7340;
+  --greenlt:  #d4edda;
+  --red:      #b71c1c;
+  --redlt:    #fdecea;
+  --purple:   #5e35b1;
+  --white:    #ffffff;
+  --offwhite: #f2f5f9;
+  --border:   #ccd6e0;
+  --text:     #1c2a3a;
+  --muted:    #5a6a7a;
+  --shadow-sm:0 1px 4px rgba(0,47,108,.08);
+  --shadow:   0 3px 14px rgba(0,47,108,.11);
+  --shadow-lg:0 8px 32px rgba(0,47,108,.18);
+  --radius:   6px;
+  --radius-lg:10px;
+  --fs:       15px;
+  --font:     'Noto Sans', Arial, sans-serif;
+  --serif:    'Noto Serif', Georgia, serif;
+  --mono:     'JetBrains Mono', monospace;
+  --transition: all .22s ease;
+}
+/* High-contrast mode */
+body.hc {
+  --navy:#000; --blue:#000; --sky:#0056b3; --text:#000; --muted:#333;
+  --border:#000; --offwhite:#fff; --white:#fff;
+  filter: contrast(1.2);
+}
+
+/* ─── RESET & BASE ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{font-family:var(--font);color:var(--text);background:var(--offwhite);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+a{color:var(--sky);text-decoration:none}
+a:hover{text-decoration:underline}
+ul{list-style:none}
+
+/* ─── UTILITIES ─── */
+.hidden{display:none!important}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+.section{padding:52px 0}
+.section-alt{background:var(--white)}
+.section-title{font-family:var(--serif);font-size:1.6rem;color:var(--navy);line-height:1.25}
+.section-sub{color:var(--muted);font-size:.9rem;margin-top:4px}
+.divider{width:52px;height:3px;background:var(--accent);border-radius:2px;margin:10px 0 22px}
+.text-muted{color:var(--muted)}
+.text-navy{color:var(--navy)}
+.text-sm{font-size:.82rem}
+.text-xs{font-size:.74rem}
+.fw-600{font-weight:600}
+.fw-700{font-weight:700}
+.mt-4{margin-top:4px}.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-24{margin-top:24px}
+.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}.mb-12{margin-bottom:12px}.mb-16{margin-bottom:16px}.mb-20{margin-bottom:20px}.mb-24{margin-bottom:24px}
+.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.items-start{align-items:flex-start}
+.justify-between{justify-content:space-between}.justify-center{justify-content:center}
+.gap-4{gap:4px}.gap-8{gap:8px}.gap-10{gap:10px}.gap-12{gap:12px}.gap-16{gap:16px}.gap-20{gap:20px}
+.flex-wrap{flex-wrap:wrap}
+.w-full{width:100%}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:var(--radius);font-size:.84rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);text-decoration:none;letter-spacing:.2px;white-space:nowrap}
+.btn:hover{text-decoration:none}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--blue);transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#c88a00;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.btn-sky{background:var(--sky);color:#fff}
+.btn-sky:hover{background:#155fa0}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#155d33}
+.btn-red{background:var(--red);color:#fff}
+.btn-sm{padding:7px 16px;font-size:.78rem}
+.btn-lg{padding:13px 30px;font-size:.92rem}
+.btn-icon{padding:8px 12px}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--navy);background:var(--offwhite)}
+
+/* ─── CARDS ─── */
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+.card-body{padding:20px}
+.card-header{padding:14px 20px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600}
+.card-header i{color:var(--accent)}
+
+/* ─── BADGES ─── */
+.badge{display:inline-block;padding:3px 11px;border-radius:99px;font-size:.7rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+.badge-pending{background:#fff3cd;color:#856404}
+.badge-active{background:#cce5ff;color:#004085}
+.badge-resolved{background:#d4edda;color:#155724}
+.badge-closed{background:#e2e3e5;color:#383d41}
+.badge-urgent{background:#f8d7da;color:#721c24}
+
+/* ─── FORM ELEMENTS ─── */
+input,select,textarea{width:100%;padding:9px 13px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:var(--font);font-size:.87rem;color:var(--text);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(30,115,190,.14)}
+input::placeholder,textarea::placeholder{color:#a0aab4}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:5px}
+.form-group{margin-bottom:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.form-hint{font-size:.74rem;color:var(--muted);margin-top:4px}
+.required::after{content:' *';color:var(--red)}
+.input-icon-wrap{position:relative}
+.input-icon-wrap input{padding-left:36px}
+.input-icon-wrap .i-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.85rem;pointer-events:none}
+.input-group{display:flex;gap:0}
+.input-group input{border-radius:var(--radius) 0 0 var(--radius);border-right:none}
+.input-group .btn{border-radius:0 var(--radius) var(--radius) 0}
+@media(max-width:640px){.form-row,.form-row-3{grid-template-columns:1fr}}
+
+/* ─── ALERTS ─── */
+.alert{padding:11px 16px;border-radius:var(--radius);font-size:.84rem;display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.alert i{margin-top:2px;flex-shrink:0}
+.alert-info{background:#e8f4fd;color:#0c5460;border-left:4px solid var(--sky)}
+.alert-success{background:var(--greenlt);color:#155724;border-left:4px solid var(--green)}
+.alert-warn{background:#fff3cd;color:#856404;border-left:4px solid var(--accent)}
+.alert-danger{background:var(--redlt);color:var(--red);border-left:4px solid var(--red)}
+
+/* ─── TABLES ─── */
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+thead th{background:var(--navy);color:#fff;padding:11px 14px;text-align:left;font-weight:600;white-space:nowrap}
+thead th:first-child{border-radius:0}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even) td{background:#f7f9fc}
+tbody tr:hover td{background:var(--skylt);transition:background .15s}
+
+/* ─── PROGRESS BAR ─── */
+.progress{height:10px;background:var(--border);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;border-radius:99px;transition:width .5s ease}
+
+/* ─── TABS ─── */
+.tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:24px}
+.tab-btn{padding:11px 20px;font-size:.86rem;font-weight:600;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:var(--transition)}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+.tab-btn:hover{color:var(--navy)}
+.tab-pane{display:none}.tab-pane.active{display:block}
+
+/* ─── TOP STRIP ─── */
+.top-strip{background:var(--navy);color:rgba(255,255,255,.82);font-size:.73rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.top-strip .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.top-strip a{color:rgba(255,255,255,.7);margin-left:14px;transition:color .2s}
+.top-strip a:hover{color:var(--accent);text-decoration:none}
+.strip-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.font-ctrl{display:flex;align-items:center;gap:3px}
+.font-ctrl span{font-size:.7rem;color:rgba(255,255,255,.6);margin-right:3px}
+.font-ctrl button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:2px 8px;cursor:pointer;border-radius:3px;font-size:.78rem;transition:background .2s}
+.font-ctrl button:hover{background:rgba(255,255,255,.28)}
+.lang-btn,.hc-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:.7rem;padding:3px 10px;border-radius:3px;cursor:pointer;transition:all .2s}
+.lang-btn:hover,.hc-btn:hover{background:var(--accent);border-color:var(--accent)}
+.strip-divider{width:1px;height:14px;background:rgba(255,255,255,.2);margin:0 4px}
+
+/* ─── SITE HEADER ─── */
+.site-header{background:linear-gradient(135deg,var(--navy) 0%,#1a3f6e 100%);padding:14px 0;box-shadow:0 2px 18px rgba(0,0,0,.25)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo-wrap{display:flex;align-items:center;gap:16px}
+.emblem{width:62px;height:62px;background:#fff;border-radius:50%;border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.emblem svg{width:42px;height:42px}
+.logo-text h1{font-family:var(--serif);font-size:1.15rem;color:#fff;line-height:1.2;font-weight:700}
+.logo-text p{font-size:.68rem;color:rgba(255,255,255,.68);letter-spacing:.6px;margin-top:1px;text-transform:uppercase}
+.header-right{text-align:right}
+.header-right .helpline{font-size:.75rem;color:rgba(255,255,255,.7)}
+.header-right .helpline strong{color:var(--accent);font-size:.85rem}
+.header-right .header-badge{display:inline-block;background:rgba(232,160,0,.2);border:1px solid rgba(232,160,0,.4);color:var(--accent);font-size:.67rem;padding:2px 10px;border-radius:3px;margin-top:4px;letter-spacing:.5px;text-transform:uppercase}
+
+/* ─── NAVBAR ─── */
+.navbar{background:#fff;border-bottom:3px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.07);position:sticky;top:0;z-index:500}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:48px}
+.nav-links{display:flex;list-style:none;height:100%}
+.nav-links li a{display:flex;align-items:center;height:100%;padding:0 14px;font-size:.82rem;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .2s;gap:5px;white-space:nowrap}
+.nav-links li a:hover,.nav-links li a.nav-active{color:var(--sky);border-bottom-color:var(--sky)}
+.nav-login{font-size:.81rem;font-weight:600;background:var(--navy);color:#fff;padding:7px 18px;border-radius:var(--radius);text-decoration:none;transition:background .2s;flex-shrink:0}
+.nav-login:hover{background:var(--sky);text-decoration:none;color:#fff}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--navy);font-size:1.3rem}
+@media(max-width:860px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:3px solid var(--accent);height:auto;z-index:400;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+  .nav-links.open{display:flex}
+  .nav-links li a{height:44px;border-bottom:1px solid var(--border);margin-bottom:0;border-right:none;padding:0 20px}
+  .hamburger{display:block}
+  .navbar{position:sticky;top:0;z-index:500}
+  .nav-inner{position:relative}
+}
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb-bar{background:#eaf1f8;padding:7px 0;border-bottom:1px solid var(--border)}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--muted);flex-wrap:wrap}
+.breadcrumb a{color:var(--sky)}.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb .sep{color:#b0bec5;font-size:.65rem}
+
+/* ─── SPA PAGES ─── */
+.page{display:none}.page.active{display:block}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0d3060 55%,#1a4f8a 100%);color:#fff;padding:60px 0 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{display:flex;align-items:center;gap:48px;flex-wrap:wrap;position:relative;z-index:1}
+.hero-text{flex:1;min-width:280px}
+.hero-tag{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:3px 13px;border-radius:3px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px}
+.hero-text h2{font-family:var(--serif);font-size:2.1rem;line-height:1.22;margin-bottom:16px;text-shadow:0 1px 4px rgba(0,0,0,.2)}
+.hero-text p{color:rgba(255,255,255,.8);font-size:.92rem;max-width:500px;margin-bottom:26px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{flex:0 0 auto}
+.hero-stats{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:26px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;min-width:270px}
+.stat-item h3{font-size:1.9rem;font-weight:700;color:var(--accent);line-height:1}
+.stat-item p{font-size:.71rem;color:rgba(255,255,255,.68);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.hero-ticker{background:rgba(0,0,0,.25);border-top:1px solid rgba(255,255,255,.1);padding:10px 0;position:relative;z-index:1}
+.ticker-inner{display:flex;align-items:center;gap:16px;font-size:.8rem;overflow:hidden}
+.ticker-label{background:var(--accent);color:#fff;padding:2px 12px;border-radius:3px;font-weight:700;font-size:.72rem;flex-shrink:0;text-transform:uppercase;letter-spacing:.5px}
+.ticker-track{overflow:hidden;flex:1}
+.ticker-items{display:flex;gap:40px;animation:ticker 28s linear infinite;white-space:nowrap}
+.ticker-items span{color:rgba(255,255,255,.78);flex-shrink:0}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── NOTICE BAR ─── */
+.notice-bar{background:#fff8e1;border-bottom:2px solid var(--accent);padding:9px 0}
+.notice-bar .container{display:flex;align-items:center;gap:12px;font-size:.82rem;flex-wrap:wrap}
+.notice-bar strong{color:var(--navy)}
+.notice-icon{color:var(--accent);font-size:1rem;flex-shrink:0}
+
+/* ─── HOME GRID ─── */
+.home-grid{display:grid;grid-template-columns:1fr 360px;gap:28px}
+@media(max-width:960px){.home-grid{grid-template-columns:1fr}}
+
+/* ─── QUICK SERVICES ─── */
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.quick-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer;transition:var(--transition);text-decoration:none;color:var(--text);display:block}
+.quick-card:hover{transform:translateY(-5px);border-color:var(--sky);box-shadow:var(--shadow-lg);text-decoration:none;color:var(--text)}
+.quick-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 14px;color:#fff}
+.quick-card h4{font-size:.88rem;font-weight:700;margin-bottom:5px;color:var(--navy)}
+.quick-card p{font-size:.76rem;color:var(--muted);line-height:1.55}
+.quick-card .qc-arrow{color:var(--sky);font-size:.75rem;margin-top:10px;display:block;font-weight:600;opacity:0;transform:translateX(-4px);transition:var(--transition)}
+.quick-card:hover .qc-arrow{opacity:1;transform:translateX(0)}
+
+/* ─── ANNOUNCEMENT BOX ─── */
+.ann-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.ann-header{background:var(--navy);color:#fff;padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:600}
+.ann-header i{color:var(--accent)}
+.ann-item{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;font-size:.82rem;transition:background .15s}
+.ann-item:last-child{border-bottom:none}
+.ann-item:hover{background:var(--offwhite)}
+.ann-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px}
+.ann-new{background:#dc3545;color:#fff;font-size:.58rem;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:6px;text-transform:uppercase;letter-spacing:.3px}
+.ann-date{font-size:.71rem;color:var(--muted);display:block;margin-top:3px}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+@media(max-width:720px){.about-grid{grid-template-columns:1fr}}
+.about-visual{background:linear-gradient(135deg,#ddeeff 0%,#eef5ff 100%);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;gap:18px;text-align:center}
+.obj-card{background:#fff;border-left:4px solid var(--sky);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:var(--transition)}
+.obj-card:hover{border-left-color:var(--accent);transform:translateX(4px)}
+.obj-card h4{color:var(--navy);font-size:.87rem;font-weight:700;margin-bottom:4px}
+.obj-card p{font-size:.8rem;color:var(--muted)}
+.milestone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:20px}
+.milestone-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow-sm)}
+.milestone-card .m-num{font-size:1.7rem;font-weight:700;color:var(--sky);font-family:var(--mono)}
+.milestone-card .m-lbl{font-size:.74rem;color:var(--muted);margin-top:4px}
+
+/* ─── SERVICES ─── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+.svc-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:var(--transition)}
+.svc-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.svc-card-head{background:var(--navy);color:#fff;padding:20px}
+.svc-card-head i{font-size:1.6rem;display:block;color:var(--accent);margin-bottom:10px}
+.svc-card-head h4{font-size:1rem;font-weight:700}
+.svc-card-head p{font-size:.77rem;color:rgba(255,255,255,.7);margin-top:4px}
+.svc-card-body{padding:18px}
+.svc-list{padding:0}
+.svc-list li{padding:7px 0;border-bottom:1px solid var(--border);font-size:.81rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.svc-list li:last-child{border-bottom:none}
+.svc-list li i{color:var(--green);font-size:.75rem}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden}
+.faq-q{width:100%;background:#f7f9fc;border:none;padding:13px 16px;text-align:left;font-size:.84rem;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.faq-q:hover{background:var(--skylt)}
+.faq-q i{transition:transform .3s;color:var(--muted);font-size:.78rem}
+.faq-a{padding:0 16px;font-size:.82rem;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease}
+.faq-a.open{max-height:300px;padding:12px 16px}
+
+/* ─── CASE STATUS ─── */
+.search-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);max-width:640px;margin:0 auto 32px}
+.search-box h3{color:var(--navy);margin-bottom:8px;font-size:1.05rem}
+.case-result{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:none;margin-bottom:28px}
+.case-result.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cr-header{background:var(--navy);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.cr-header h4{font-size:1rem;font-family:var(--serif)}
+.cr-body{padding:0}
+.cr-grid{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:600px){.cr-grid{grid-template-columns:1fr}}
+.cr-row{padding:11px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px}
+.cr-row:nth-child(even){background:#f7f9fc}
+.cr-label{font-size:.76rem;font-weight:700;color:var(--muted);min-width:130px;flex-shrink:0}
+.cr-val{font-size:.84rem;color:var(--text)}
+.timeline{padding:20px}
+.timeline h5{color:var(--navy);margin-bottom:16px;font-size:.9rem;font-weight:700}
+.tl-item{display:flex;gap:14px;margin-bottom:12px}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;flex:0 0 16px}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--sky);flex-shrink:0;border:2px solid #fff;box-shadow:0 0 0 2px var(--sky)}
+.tl-dot.upcoming{background:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.tl-line{width:2px;flex:1;background:var(--border);margin:3px 0;min-height:14px}
+.tl-text p{font-size:.82rem;font-weight:600;color:var(--navy);margin:0}
+.tl-text span{font-size:.74rem;color:var(--muted)}
+.no-result{display:none;text-align:center;padding:40px;color:var(--muted);font-size:.9rem}
+.no-result.show{display:block}
+.sample-cases-table{overflow-x:auto}
+
+/* ─── FILE A CASE ─── */
+.file-wrap{max-width:740px;margin:0 auto}
+.stepper{display:flex;gap:0;margin-bottom:36px;counter-reset:step}
+.step{flex:1;text-align:center;position:relative;padding-top:50px;font-size:.76rem;font-weight:600;color:var(--muted)}
+.step::before{content:counter(step);counter-increment:step;position:absolute;top:0;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--border);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;z-index:1;line-height:32px}
+.step::after{content:'';position:absolute;top:16px;left:calc(50% + 16px);right:calc(-50% + 16px);height:2px;background:var(--border)}
+.step:last-child::after{display:none}
+.step.done::before{background:var(--green);content:'✓';font-size:.72rem}
+.step.done::after{background:var(--green)}
+.step.current::before{background:var(--navy);box-shadow:0 0 0 4px rgba(0,47,108,.18)}
+.step.current{color:var(--navy)}
+.step-pane{display:none}.step-pane.active{display:block;animation:fadeIn .25s ease}
+.case-id-box{background:var(--greenlt);border:2px solid var(--green);border-radius:var(--radius);padding:24px;text-align:center;display:none}
+.case-id-box.show{display:block;animation:fadeIn .4s ease}
+.case-id-box h3{color:var(--green);font-size:1rem;margin-bottom:8px}
+.case-id-box .cid{font-size:1.8rem;font-weight:700;color:var(--navy);font-family:var(--mono);letter-spacing:3px}
+.doc-upload-area{border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer;transition:var(--transition);background:#fafbfc}
+.doc-upload-area:hover,.doc-upload-area.drag-over{border-color:var(--sky);background:var(--skylt)}
+.doc-upload-area i{font-size:2rem;color:var(--muted);display:block;margin-bottom:10px}
+.doc-list{margin-top:14px}
+.doc-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#f0f7ff;border-radius:var(--radius);margin-bottom:6px;font-size:.81rem}
+.doc-item .doc-name{display:flex;align-items:center;gap:8px;color:var(--navy)}
+.doc-remove{background:none;border:none;color:var(--red);cursor:pointer;font-size:.85rem;padding:2px 6px}
+@media(max-width:640px){.stepper{display:none}}
+
+/* ─── LOGIN/AUTH ─── */
+.auth-container{max-width:480px;margin:0 auto}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.role-btn{padding:14px;border:2px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;text-align:center;transition:var(--transition)}
+.role-btn:hover,.role-btn.selected{border-color:var(--sky);background:var(--skylt)}
+.role-btn i{font-size:1.4rem;color:var(--muted);display:block;margin-bottom:6px}
+.role-btn.selected i{color:var(--sky)}
+.role-btn span{font-size:.8rem;font-weight:600;color:var(--navy)}
+.divider-or{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--muted);font-size:.8rem}
+.divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--border)}
+.social-login{display:flex;gap:10px}
+.social-btn{flex:1;padding:9px;border:1.5px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:center;gap:7px;transition:var(--transition)}
+.social-btn:hover{background:var(--offwhite);border-color:var(--navy)}
+.strength-bar{height:5px;border-radius:3px;margin-top:6px;transition:all .3s;background:var(--border)}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:720px){.contact-grid{grid-template-columns:1fr}}
+.contact-info{background:var(--navy);color:#fff;border-radius:var(--radius);padding:32px 28px}
+.contact-info h3{font-family:var(--serif);margin-bottom:24px;font-size:1.1rem}
+.ci-row{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.ci-icon{width:38px;height:38px;background:var(--offwhite);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem;color:var(--accent)}
+.contact-info .ci-icon{background:rgba(255,255,255,.12)}
+.ci-text p{font-size:.81rem;color:var(--muted);margin:0;line-height:1.55}
+.contact-info .ci-text p{color:rgba(255,255,255,.72)}
+.ci-text strong{font-size:.86rem;display:block;margin-bottom:2px;color:var(--navy)}
+.contact-info .ci-text strong{color:#fff}
+.map-placeholder{background:linear-gradient(135deg,#c3d9ee 0%,#e8f1f8 100%);border:1px solid var(--border);border-radius:var(--radius);height:180px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);margin-top:18px;font-size:.82rem;cursor:pointer;transition:var(--transition)}
+.map-placeholder:hover{background:linear-gradient(135deg,#b8d0e8 0%,#dde9f4 100%)}
+.map-placeholder i{font-size:2rem;color:var(--sky)}
+.office-hours{background:var(--accentlt);border:1px solid rgba(232,160,0,.3);border-radius:var(--radius);padding:14px 16px;font-size:.81rem;margin-top:14px}
+.office-hours strong{color:var(--navy);display:block;margin-bottom:6px}
+
+/* ─── ADMIN DASHBOARD ─── */
+.admin-topbar{background:linear-gradient(135deg,#1a0a3d 0%,var(--navy) 100%);color:#fff;padding:14px 0;border-bottom:3px solid var(--accent)}
+.admin-topbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.admin-topbar h3{font-size:.95rem;display:flex;align-items:center;gap:8px}
+.admin-nav{display:flex;gap:14px;flex-wrap:wrap}
+.admin-nav button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 16px;border-radius:var(--radius);font-size:.78rem;cursor:pointer;transition:all .2s}
+.admin-nav button:hover,.admin-nav button.active{background:var(--accent);border-color:var(--accent)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:14px;transition:var(--transition)}
+.stat-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.stat-icon{width:50px;height:50px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;flex-shrink:0}
+.stat-info h3{font-size:1.7rem;font-weight:700;color:var(--navy);line-height:1;font-family:var(--mono)}
+.stat-info p{font-size:.74rem;color:var(--muted);margin-top:3px}
+.stat-info .trend{font-size:.7rem;margin-top:3px;display:flex;align-items:center;gap:3px;font-weight:600}
+.trend-up{color:var(--green)}.trend-dn{color:var(--red)}
+.admin-section-title{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:2px solid var(--offwhite)}
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.filter-bar select,.filter-bar input{max-width:190px;width:auto}
+.admin-section{display:none}.admin-section.active{display:block;animation:fadeIn .25s ease}
+/* Charts */
+.chart-wrap{position:relative;height:200px;background:#f7f9fc;border-radius:var(--radius);overflow:hidden}
+.chart-wrap canvas{width:100%!important;height:100%!important}
+.mini-bar-chart{display:flex;align-items:flex-end;height:140px;gap:8px;padding:10px 0 24px;position:relative}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height .5s ease;cursor:pointer;position:relative}
+.bar-fill:hover::after{content:attr(data-val);position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:2px 7px;border-radius:3px;font-size:.68rem;white-space:nowrap}
+.bar-lbl{font-size:.66rem;color:var(--muted);text-align:center;margin-top:6px}
+.donut-chart{width:140px;height:140px;flex-shrink:0}
+.legend-list li{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--text);margin-bottom:6px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* ─── MODAL ─── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius-lg);padding:30px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:fadeIn .25s ease;position:relative}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);transition:color .2s}
+.modal-close:hover{color:var(--red)}
+.modal-title{color:var(--navy);margin-bottom:18px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px}
+
+/* ─── TOAST ─── */
+.toaster{position:fixed;bottom:100px;right:24px;z-index:800;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:var(--radius);font-size:.83rem;font-weight:500;box-shadow:var(--shadow-lg);pointer-events:auto;animation:toastIn .3s ease;min-width:250px;max-width:360px}
+@keyframes toastIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+.toast.success{background:#fff;border-left:4px solid var(--green);color:var(--text)}
+.toast.success i{color:var(--green)}
+.toast.warn{background:#fff;border-left:4px solid var(--accent);color:var(--text)}
+.toast.warn i{color:var(--accent)}
+.toast.info{background:#fff;border-left:4px solid var(--sky);color:var(--text)}
+.toast.info i{color:var(--sky)}
+/* ─── NOTIFICATIONS ─── */
+.nav-noti { position: relative; cursor: pointer; padding: 10px; color: #fff; }
+.noti-badge { position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; background: var(--red); color: #fff; border-radius: 50%; font-size: .65rem; display: flex; align-items: center; justify-content: center; font-weight: 700; border: 2px solid var(--navy); }
+.noti-dropdown { display: none; position: absolute; top: 100%; right: 0; width: 280px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); z-index: 1000; overflow: hidden; margin-top: 10px; }
+.noti-dropdown.open { display: block; animation: fadeIn .2s ease; }
+.noti-head { background: var(--offwhite); padding: 10px 14px; font-size: .8rem; font-weight: 700; color: var(--navy); border-bottom: 1px solid var(--border); }
+.noti-item { padding: 12px 14px; display: flex; gap: 12px; border-bottom: 1px solid var(--offwhite); transition: background .2s; }
+.noti-item:hover { background: #f8fafc; }
+.noti-item i { font-size: .9rem; margin-top: 3px; }
+.noti-item p { font-size: .78rem; color: var(--navy); margin: 0; font-weight: 500; }
+.noti-item span { font-size: .65rem; color: var(--muted); }
+/* ─── CHATBOT ─── */
+.chatbot-fab{position:fixed;bottom:24px;right:24px;z-index:700;width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;border:none;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 24px rgba(0,47,108,.5);transition:all .22s;display:flex;align-items:center;justify-content:center}
+.chatbot-fab:hover{background:var(--sky);transform:scale(1.08)}
+.chatbot-fab .chat-badge{position:absolute;top:-2px;right:-2px;width:16px;height:16px;background:#dc3545;border-radius:50%;border:2px solid #fff;font-size:.55rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.chatbot-win{position:fixed;bottom:92px;right:24px;z-index:700;width:330px;background:#fff;border-radius:var(--radius-lg);box-shadow:0 10px 50px rgba(0,0,0,.28);overflow:hidden;display:none;flex-direction:column;border:1px solid var(--border)}
+.chatbot-win.open{display:flex;animation:fadeIn .25s ease}
+.chat-head{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.chat-head-info h5{font-size:.87rem;font-weight:700;margin:0}
+.chat-head-info p{font-size:.7rem;color:rgba(255,255,255,.7);margin:0}
+.chat-close-btn{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1.1rem;padding:2px;transition:color .2s}
+.chat-close-btn:hover{color:#fff}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;min-height:200px;max-height:300px;display:flex;flex-direction:column;gap:10px;background:#f8fafc}
+.msg{max-width:82%;padding:9px 13px;border-radius:var(--radius-lg);font-size:.81rem;line-height:1.55}
+.msg-bot{background:#fff;color:var(--text);border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start}
+.msg-user{background:var(--navy);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg-typing{background:#fff;border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start;display:flex;align-items:center;gap:4px;padding:12px 14px}
+.msg-typing span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bounce 1s infinite}
+.msg-typing span:nth-child(2){animation-delay:.18s}
+.msg-typing span:nth-child(3){animation-delay:.36s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.chat-quick-btns{display:flex;flex-wrap:wrap;gap:5px;padding:8px 14px;background:#fff;border-top:1px solid var(--border)}
+.cq-btn{font-size:.71rem;padding:4px 10px;border:1px solid var(--border);border-radius:99px;background:#fff;cursor:pointer;color:var(--navy);transition:all .2s;white-space:nowrap}
+.cq-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chat-input-row{display:flex;gap:0;padding:10px;background:#fff;border-top:1px solid var(--border)}
+.chat-input-row input{border-radius:var(--radius) 0 0 var(--radius);border-right:none;font-size:.82rem;padding:9px 12px}
+.chat-send{background:var(--navy);color:#fff;border:none;padding:9px 14px;cursor:pointer;border-radius:0 var(--radius) var(--radius) 0;transition:background .2s;font-size:.85rem}
+.chat-send:hover{background:var(--sky)}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--navy);color:rgba(255,255,255,.72);padding:44px 0 0;margin-top:52px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding-bottom:32px}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer h5{color:#fff;font-size:.83rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.7px}
+.footer p{font-size:.77rem;line-height:1.75}
+.footer-links li a{font-size:.77rem;color:rgba(255,255,255,.62);display:block;padding:3px 0;transition:color .2s}
+.footer-links li a:hover{color:var(--accent);text-decoration:none}
+.footer-links li a i{width:16px;font-size:.75rem}
+.footer-social{display:flex;gap:10px;margin-top:14px}
+.social-ico{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:.82rem;transition:all .2s;cursor:pointer}
+.social-ico:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:14px 0;font-size:.73rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center}
+.footer-policy{display:flex;gap:16px;flex-wrap:wrap}
+.footer-policy a{color:rgba(255,255,255,.5);transition:color .2s}
+.footer-policy a:hover{color:var(--accent)}
+.footer-visitor{font-size:.71rem;color:rgba(255,255,255,.45);margin-top:10px}
+.footer-visitor strong{color:rgba(255,255,255,.72)}
+
+/* ─── CASE DOSSIER UI ─── */
+.cr-dossier { border-top: 1px solid var(--border); padding-top: 20px; }
+.dossier-section { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; position: relative; }
+.dossier-section h5 { font-size: .82rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; border-bottom: 1px solid var(--offwhite); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.dossier-section h5 i { color: var(--sky); font-size: .9rem; }
+.cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 600px) { .cr-grid { grid-template-columns: 1fr; } }
+.cr-row { display: flex; flex-direction: column; gap: 3px; margin-bottom: 10px; }
+.cr-label { font-size: .68rem; text-transform: uppercase; color: var(--muted); letter-spacing: .4px; font-weight: 600; }
+.cr-val { font-size: .88rem; color: var(--navy); }
+.bg-slate { background: #f1f5f9; }
+.border-radius { border-radius: 6px; }
+.italic { font-style: italic; }
+
+@media print {
+  .top-strip, .navbar, .chatbot-fab, .chatbot-win, .toaster, .footer, .breadcrumb-bar, .search-box, .btn-ghost { display: none !important; }
+  .case-result { display: block !important; border: none; box-shadow: none; padding: 0; }
+  .dossier-section { border: 1px solid #eee; break-inside: avoid; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     TOP ACCESSIBILITY STRIP
+═══════════════════════════════════════════════ -->
+<div class="top-strip">
+  <div class="container">
+    <div class="strip-left flex items-center gap-8">
+      <span><i class="fas fa-flag" style="margin-right:5px;color:var(--accent)"></i> Government of India — Ministry of Land Records &amp; Revenue</span>
+    </div>
+    <div class="strip-right">
+      <div class="font-ctrl">
+        <span>Font:</span>
+        <button onclick="changeFontSize(-1)" title="Decrease font size">A-</button>
+        <button onclick="changeFontSize(1)"  title="Increase font size">A+</button>
+        <button onclick="resetAccess()"      title="Reset font size">A</button>
+      </div>
+      <div class="strip-divider"></div>
+      <button class="hc-btn" onclick="toggleHighContrast()" title="High Contrast">⊞ Contrast</button>
+      <div class="strip-divider"></div>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">தமிழ்</button>
+      <div class="strip-divider"></div>
+      <a href="#" onclick="navTo('contact')"><i class="fas fa-phone"></i> 1800-200-0080</a>
+      <a href="https://india.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> india.gov.in</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SITE HEADER
+═══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-wrap">
+      <div class="emblem">
+        <!-- Government-style SVG Emblem (original) -->
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="36" fill="#f0f4f8" stroke="#002f6c" stroke-width="2"/>
+          <path d="M40 12 L44 28 L60 28 L47 37 L52 53 L40 44 L28 53 L33 37 L20 28 L36 28 Z" fill="#002f6c" opacity=".9"/>
+          <circle cx="40" cy="56" r="5" fill="#e8a000"/>
+          <rect x="28" y="62" width="24" height="3" rx="1.5" fill="#002f6c"/>
+          <path d="M20 68 Q40 72 60 68" stroke="#002f6c" stroke-width="1.5" fill="none"/>
+          <text x="40" y="78" text-anchor="middle" font-size="5" fill="#002f6c" font-family="serif">INDIA</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1 id="site-title">Digital Land Litigation<br>Management System</h1>
+        <p id="site-sub">Ministry of Land Records &amp; Revenue — Government of India</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="helpline">Helpline: <strong>1800-200-0080</strong> (Toll-Free 24×7)</div>
+      <div class="helpline" style="margin-top:4px;">
+        <i class="fas fa-envelope" style="margin-right:4px;color:var(--accent)"></i>support@dllms.gov.in
+      </div>
+      <span class="header-badge">NIC Secured Portal</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION BAR
+═══════════════════════════════════════════════ -->
+<nav class="navbar" id="mainNav">
+  <div class="container nav-inner">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="navTo('home')"       id="nav-home"       class="nav-active"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#" onclick="navTo('about')"      id="nav-about"      ><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="#" onclick="navTo('services')"   id="nav-services"   ><i class="fas fa-th-list"></i> Services</a></li>
+      <li><a href="#" onclick="navTo('casestatus')" id="nav-casestatus" ><i class="fas fa-search"></i> Case Status</a></li>
+      <li><a href="#" onclick="navTo('judgments')"   id="nav-judgments"  ><i class="fas fa-gavel"></i> Judgments</a></li>
+      <li><a href="#" onclick="navTo('file')"        id="nav-file"       ><i class="fas fa-file-alt"></i> File Case</a></li>
+      <li><a href="#" onclick="navTo('help')"       id="nav-help"       ><i class="fas fa-question-circle"></i> Help</a></li>
+      <li><a href="#" onclick="navTo('contact')"    id="nav-contact"    ><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+      <div class="flex items-center gap-10">
+        <!-- Notification Bell -->
+        <div class="nav-noti" onclick="toggleNoti(event)">
+          <i class="fas fa-bell"></i>
+          <span class="noti-badge" id="notiCount">3</span>
+          <div class="noti-dropdown" id="notiDropdown">
+            <div class="noti-head">Notifications</div>
+            <div id="notiItems">
+              <div class="noti-item">
+                <i class="fas fa-info-circle text-sky"></i>
+                <div>
+                  <p>Welcome to DLLMS v3.0</p>
+                  <span>Just now</span>
+                </div>
+              </div>
+              <div class="noti-item">
+                <i class="fas fa-check-circle text-green"></i>
+                <div>
+                  <p>26k+ Judgments Indexing Complete</p>
+                  <span>2 hours ago</span>
+                </div>
+              </div>
+              <div class="noti-item">
+                <i class="fas fa-exclamation-triangle text-orange"></i>
+                <div>
+                  <p>System Maintenance at 2 AM</p>
+                  <span>Yesterday</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="nav-login" onclick="navTo('login')"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">
+          <i class="fas fa-bars" id="hamburgerIcon"></i>
+        </button>
+      </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar" id="breadcrumbBar">
+  <div class="container">
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="#" onclick="navTo('home')"><i class="fas fa-home"></i></a>
+      <span class="sep">›</span>
+      <span id="breadcrumbCurrent">Home</span>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toaster" id="toaster"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: HOME
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-tag"><i class="fas fa-landmark"></i> Official Government Portal</span>
+        <h2>Digital Land Litigation<br>Management System</h2>
+        <p>A unified, transparent, and citizen-centric digital platform for end-to-end management of land dispute cases across all districts and tehsils of India.</p>
+        <div class="hero-btns">
+          <button class="btn btn-accent btn-lg" onclick="navTo('file')"><i class="fas fa-file-plus"></i> File a Case</button>
+          <button class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.6)" onclick="navTo('casestatus')"><i class="fas fa-search"></i> Track Status</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-stats">
+          <div class="stat-item"><h3 id="cnt-total">2,47+</h3><p>Cases Filed</p></div>
+          <div class="stat-item"><h3 id="cnt-res">89+</h3><p>Resolved</p></div>
+          <div class="stat-item"><h3 id="cnt-dist">32</h3><p>Districts</p></div>
+          <div class="stat-item"><h3 id="cnt-days">3.2</h3><p>Avg. Days to Process</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- Ticker -->
+    <div class="hero-ticker">
+      <div class="container ticker-inner">
+        <span class="ticker-label"><i class="fas fa-bullhorn"></i> Updates</span>
+        <div class="ticker-track">
+          <div class="ticker-items" id="ticker">
+            <span>📢 Portal maintenance on 15 Apr 2026 (02:00–04:00 AM IST)</span>
+            <span>🗓 e-Hearing scheduling now live for active cases</span>
+            <span>📄 Q1 2026 survey document deadline: 20 April 2026</span>
+            <span>✅ District Land Officers list updated for Tamil Nadu</span>
+            <span>📊 Annual Land Litigation Report 2025 now available</span>
+            <span>📢 Portal maintenance on 15 Apr 2026 (02:00–04:00 AM IST)</span>
+            <span>🗓 e-Hearing scheduling now live for active cases</span>
+            <span>📄 Q1 2026 survey document deadline: 20 April 2026</span>
+            <span>✅ District Land Officers list updated for Tamil Nadu</span>
+            <span>📊 Annual Land Litigation Report 2025 now available</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice Bar -->
+  <div class="notice-bar">
+    <div class="container">
+      <i class="fas fa-exclamation-circle notice-icon"></i>
+      <span><strong>Notice:</strong> Online case filing is available 24×7. For urgent hearings, contact your District Land Officer. Helpline: <strong>1800-200-0080</strong> (DILRMP)</span>
+      <button class="btn btn-sm btn-outline" style="margin-left:auto" onclick="this.parentElement.parentElement.style.display='none'">×</button>
+    </div>
+  </div>
+
+  <!-- Main Section -->
+  <section class="section">
+    <div class="container">
+      <div class="home-grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+          <div class="section-title">Quick Services</div>
+          <div class="divider"></div>
+          <p class="section-sub mb-20">Access government land litigation services from anywhere, anytime.</p>
+
+          <div class="quick-grid mb-24">
+            <div class="quick-card" onclick="navTo('file')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#002f6c,#1a4f8a)"><i class="fas fa-file-signature"></i></div>
+              <h4>File a Case</h4>
+              <p>Register a new land dispute case online with supporting documents.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> Start filing</span>
+            </div>
+            <div class="quick-card" onclick="navTo('casestatus')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#1a7340,#27ae60)"><i class="fas fa-search-location"></i></div>
+              <h4>Track Case</h4>
+              <p>Check real-time status, hearing dates, and officer details by Case ID.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> Track now</span>
+            </div>
+            <div class="quick-card" onclick="navTo('services')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#5e35b1,#7e57c2)"><i class="fas fa-upload"></i></div>
+              <h4>Upload Documents</h4>
+              <p>Securely upload land records, sale deeds, and survey maps.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> Upload</span>
+            </div>
+            <div class="quick-card" onclick="navTo('help')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#b71c1c,#e53935)"><i class="fas fa-headset"></i></div>
+              <h4>Citizen Help</h4>
+              <p>FAQs, user guides, and 24×7 support for all land queries.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> Get help</span>
+            </div>
+            <div class="quick-card" onclick="navTo('casestatus')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#00695c,#00897b)"><i class="fas fa-calendar-check"></i></div>
+              <h4>e-Hearing</h4>
+              <p>Schedule or join virtual hearings for your active land case.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> Schedule</span>
+            </div>
+            <div class="quick-card" onclick="navTo('login')">
+              <div class="quick-icon" style="background:linear-gradient(135deg,#e65100,#f4511e)"><i class="fas fa-map-marked-alt"></i></div>
+              <h4>Land Records</h4>
+              <p>Access digitised patta, chitta, and FMB records online.</p>
+              <span class="qc-arrow"><i class="fas fa-arrow-right"></i> View records</span>
+            </div>
+          </div>
+
+          <!-- Recent Cases -->
+          <div class="section-title">Recent Case Updates</div>
+          <div class="divider"></div>
+          <div class="table-wrap mt-16">
+            <table>
+              <thead>
+                <tr><th>Case ID</th><th>Applicant</th><th>District</th><th>Dispute Type</th><th>Status</th><th>Updated</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026001</strong></td><td>Arjun Subramaniam</td><td>Chennai</td><td>Boundary Dispute</td><td><span class="badge badge-pending">Pending</span></td><td>08 Apr 2026</td></tr>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026002</strong></td><td>Meenakshi Rajan</td><td>Coimbatore</td><td>Encroachment</td><td><span class="badge badge-active">Active</span></td><td>07 Apr 2026</td></tr>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026003</strong></td><td>Ramesh Pillai</td><td>Madurai</td><td>Title Dispute</td><td><span class="badge badge-resolved">Resolved</span></td><td>05 Apr 2026</td></tr>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026004</strong></td><td>Kavitha Nair</td><td>Salem</td><td>Illegal Possession</td><td><span class="badge badge-pending">Pending</span></td><td>04 Apr 2026</td></tr>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026005</strong></td><td>Venkatesh Iyer</td><td>Trichy</td><td>Succession</td><td><span class="badge badge-active">Active</span></td><td>03 Apr 2026</td></tr>
+                <tr><td><strong class="text-navy" style="font-family:var(--mono)">LL2026006</strong></td><td>Priya Chandran</td><td>Vellore</td><td>Boundary Dispute</td><td><span class="badge badge-closed">Closed</span></td><td>01 Apr 2026</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-12 flex justify-between items-center">
+            <span class="text-sm text-muted">Showing 6 of 247 cases</span>
+            <button class="btn btn-sm btn-ghost" onclick="navTo('casestatus')"><i class="fas fa-list"></i> View All Cases</button>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div>
+          <div class="section-title">Announcements</div>
+          <div class="divider"></div>
+          <div class="ann-box mt-16">
+            <div class="ann-header"><i class="fas fa-bell"></i> Latest Notifications</div>
+            <div class="ann-item"><div class="ann-dot"></div><div><span>Portal maintenance on 15 Apr 2026 from 02:00–04:00 AM IST <span class="ann-new">New</span></span><span class="ann-date">09 Apr 2026</span></div></div>
+            <div class="ann-item"><div class="ann-dot"></div><div><span>e-Hearing scheduling is now available for all active cases.</span><span class="ann-date">05 Apr 2026</span></div></div>
+            <div class="ann-item"><div class="ann-dot"></div><div><span>Survey documents deadline for Q1 2026 batch: 20 April 2026.</span><span class="ann-date">01 Apr 2026</span></div></div>
+            <div class="ann-item"><div class="ann-dot"></div><div><span>District Land Officers list updated for Tamil Nadu.</span><span class="ann-date">28 Mar 2026</span></div></div>
+            <div class="ann-item"><div class="ann-dot"></div><div><span>Annual Land Litigation Statistics Report 2025 now available.</span><span class="ann-date">20 Mar 2026</span></div></div>
+          </div>
+
+          <!-- Hearing Calendar -->
+          <div class="card mt-20">
+            <div class="card-header"><i class="fas fa-calendar-alt"></i> Hearing Calendar — April 2026</div>
+            <div class="card-body" style="padding:14px">
+              <p class="text-xs text-muted mb-12">Upcoming hearings at District Courts</p>
+              <table>
+                <thead><tr><th style="background:#eaf1f8;color:var(--navy)">Date</th><th style="background:#eaf1f8;color:var(--navy)">Case ID</th><th style="background:#eaf1f8;color:var(--navy)">Court</th></tr></thead>
+                <tbody>
+                  <tr><td>11 Apr</td><td style="font-family:var(--mono);font-size:.78rem">LL2026001</td><td>Chennai HC</td></tr>
+                  <tr><td>14 Apr</td><td style="font-family:var(--mono);font-size:.78rem">LL2026002</td><td>Coimbatore DC</td></tr>
+                  <tr><td>17 Apr</td><td style="font-family:var(--mono);font-size:.78rem">LL2026003</td><td>Madurai HC</td></tr>
+                  <tr><td>22 Apr</td><td style="font-family:var(--mono);font-size:.78rem">LL2026005</td><td>Trichy DC</td></tr>
+                  <tr><td>28 Apr</td><td style="font-family:var(--mono);font-size:.78rem">LL2026007</td><td>Salem DC</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Helpline Card -->
+          <div class="card mt-20" style="background:linear-gradient(135deg,var(--navy),#1a4f8a)">
+            <div class="card-body" style="text-align:center;color:#fff">
+              <i class="fas fa-headset" style="font-size:2rem;color:var(--accent);margin-bottom:10px;display:block"></i>
+              <div style="font-size:.85rem;font-weight:700;margin-bottom:4px">Citizen Helpdesk</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--accent);font-family:var(--mono)">1800-200-0080</div>
+              <div style="font-size:.74rem;color:rgba(255,255,255,.7);margin-top:4px">Toll-Free · Mon–Sat · 09:00–18:00 IST</div>
+              <button class="btn btn-accent btn-sm mt-12 w-full" style="justify-content:center" onclick="navTo('contact')"><i class="fas fa-envelope"></i> Email Support</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-home -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: ABOUT
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-title">About the System</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-24">Empowering citizens through transparent, efficient, and digital land governance.</p>
+
+      <div class="about-grid">
+        <div>
+          <div class="alert alert-info mb-20">
+            <i class="fas fa-info-circle"></i>
+            <span>This portal is developed under the <strong>National e-Governance Plan (NeGP)</strong> to digitise land dispute management across all Indian states and union territories.</span>
+          </div>
+          <p class="text-sm text-muted mb-16">Land litigation in India accounts for a significant share of all pending court cases. Delays in resolution often stem from manual, paper-based record-keeping and lack of real-time visibility for citizens and government officers alike.</p>
+          <p class="text-sm text-muted mb-20">The <strong>Digital Land Litigation Management System (DLLMS)</strong> addresses these challenges by providing a secure, unified platform connecting citizens, District Land Officers, Tahsildars, and the judiciary for end-to-end case management.</p>
+          <p class="text-sm text-muted mb-24">By digitising every stage — from case filing and document submission to hearing scheduling and final order issuance — DLLMS reduces processing time, eliminates physical visits, and ensures tamper-proof record maintenance.</p>
+
+          <div class="section-title" style="font-size:1.1rem">System Objectives</div>
+          <div class="divider"></div>
+          <div class="mt-16">
+            <div class="obj-card"><h4><i class="fas fa-eye" style="margin-right:8px;color:var(--sky)"></i>Transparency</h4><p>Every case update, document, and hearing order is logged and accessible to all authorised parties in real time.</p></div>
+            <div class="obj-card"><h4><i class="fas fa-bolt" style="margin-right:8px;color:var(--accent)"></i>Efficiency</h4><p>Automated workflows reduce turnaround time by eliminating redundant manual processes and paper-based handling.</p></div>
+            <div class="obj-card"><h4><i class="fas fa-laptop-code" style="margin-right:8px;color:var(--green)"></i>Digital Governance</h4><p>Secure e-filing, e-signature support, and integration with national land record portals (DILRMP, eCourts).</p></div>
+            <div class="obj-card"><h4><i class="fas fa-users" style="margin-right:8px;color:var(--purple)"></i>Citizen-Centric Design</h4><p>Multilingual interface, SMS/email notifications, and step-by-step guidance for every service.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="about-visual">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+              <rect x="10" y="30" width="100" height="70" rx="6" fill="#002f6c" opacity=".08"/>
+              <rect x="18" y="38" width="84" height="54" rx="4" fill="#fff" stroke="#002f6c" stroke-width="1.5"/>
+              <rect x="26" y="48" width="50" height="6" rx="3" fill="#002f6c" opacity=".5"/>
+              <rect x="26" y="60" width="68" height="4" rx="2" fill="#ccd6e0"/>
+              <rect x="26" y="68" width="60" height="4" rx="2" fill="#ccd6e0"/>
+              <rect x="26" y="76" width="40" height="4" rx="2" fill="#ccd6e0"/>
+              <circle cx="88" cy="68" r="16" fill="#002f6c"/>
+              <path d="M82 68 L87 73 L94 63" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Map pins -->
+              <circle cx="40" cy="20" r="8" fill="#e8a000"/>
+              <path d="M40 28 L36 20 Q36 14 40 14 Q44 14 44 20 Z" fill="#e8a000"/>
+              <circle cx="40" cy="20" r="3" fill="#fff"/>
+            </svg>
+            <div style="text-align:center">
+              <div style="font-size:.82rem;color:var(--muted);font-weight:600">Powered by</div>
+              <div style="font-size:.95rem;color:var(--navy);font-weight:700;margin-top:4px">National Informatics Centre (NIC)</div>
+              <div style="font-size:.76rem;color:var(--muted)">Ministry of Electronics &amp; IT, GoI</div>
+            </div>
+            <div style="font-size:.75rem;color:var(--muted);text-align:center;line-height:1.6;border-top:1px solid var(--border);padding-top:16px;width:100%">
+              Compliant with: <strong>IT Act 2000</strong> · <strong>CERT-In Guidelines</strong> · <strong>AarogyaSetu Data Policy</strong>
+            </div>
+          </div>
+
+          <div class="card mt-20">
+            <div class="card-header"><i class="fas fa-sitemap"></i> Stakeholder Roles</div>
+            <div class="card-body" style="padding:0">
+              <table>
+                <thead><tr><th>Role</th><th>Responsibilities</th></tr></thead>
+                <tbody>
+                  <tr><td class="fw-600 text-navy">Citizen / Applicant</td><td>File cases, upload documents, track status</td></tr>
+                  <tr><td class="fw-600 text-navy">Tahsildar</td><td>Verify documents, issue notices, schedule surveys</td></tr>
+                  <tr><td class="fw-600 text-navy">District Land Officer</td><td>Supervise cases, upload orders, manage hearings</td></tr>
+                  <tr><td class="fw-600 text-navy">Revenue Court</td><td>Adjudicate, record orders, upload judgements</td></tr>
+                  <tr><td class="fw-600 text-navy">Admin / NIC</td><td>System management, reports, user management</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Milestones -->
+      <div class="section-title mt-24" style="font-size:1.1rem">Portal Milestones</div>
+      <div class="divider"></div>
+      <div class="milestone-grid mt-16">
+        <div class="milestone-card"><div class="m-num">2,47+</div><div class="m-lbl">Cases Filed</div></div>
+        <div class="milestone-card"><div class="m-num">89</div><div class="m-lbl">Cases Resolved</div></div>
+        <div class="milestone-card"><div class="m-num">32</div><div class="m-lbl">Districts Covered</div></div>
+        <div class="milestone-card"><div class="m-num">1,12</div><div class="m-lbl">Active Cases</div></div>
+        <div class="milestone-card"><div class="m-num">98.4%</div><div class="m-lbl">Uptime SLA</div></div>
+        <div class="milestone-card"><div class="m-num">14K+</div><div class="m-lbl">Registered Users</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-about -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: SERVICES
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <section class="section">
+    <div class="container">
+      <div class="section-title">Our Services</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">Comprehensive digital services for land dispute resolution and record management.</p>
+
+      <div class="services-grid mb-36">
+        <div class="svc-card">
+          <div class="svc-card-head"><i class="fas fa-file-signature"></i><h4>Case Registration</h4><p>File land disputes online securely</p></div>
+          <div class="svc-card-body">
+            <p class="text-sm text-muted mb-16">Register new land litigation cases online 24×7 without visiting any government office. Upload all supporting documents digitally.</p>
+            <ul class="svc-list mb-16">
+              <li><i class="fas fa-check-circle"></i> Boundary & title disputes</li>
+              <li><i class="fas fa-check-circle"></i> Encroachment complaints</li>
+              <li><i class="fas fa-check-circle"></i> Succession and inheritance</li>
+              <li><i class="fas fa-check-circle"></i> Illegal possession cases</li>
+              <li><i class="fas fa-check-circle"></i> Partition and division suits</li>
+            </ul>
+            <button class="btn btn-primary btn-sm w-full" style="justify-content:center" onclick="navTo('file')"><i class="fas fa-plus"></i> Register Now</button>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-card-head" style="background:#1a7340"><i class="fas fa-search-location"></i><h4>Case Tracking</h4><p>Real-time status and updates</p></div>
+          <div class="svc-card-body">
+            <p class="text-sm text-muted mb-16">Track your case status in real time using your Case ID. Receive SMS and email alerts for every update, hearing, and order.</p>
+            <ul class="svc-list mb-16">
+              <li><i class="fas fa-check-circle"></i> Live case status display</li>
+              <li><i class="fas fa-check-circle"></i> Hearing date & venue</li>
+              <li><i class="fas fa-check-circle"></i> Officer contact details</li>
+              <li><i class="fas fa-check-circle"></i> Order & judgement copies</li>
+              <li><i class="fas fa-check-circle"></i> SMS/email notifications</li>
+            </ul>
+            <button class="btn btn-sm w-full" style="background:#1a7340;color:#fff;justify-content:center" onclick="navTo('casestatus')"><i class="fas fa-search"></i> Track Case</button>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-card-head" style="background:#5e35b1"><i class="fas fa-cloud-upload-alt"></i><h4>Document Upload</h4><p>Secure digital document management</p></div>
+          <div class="svc-card-body">
+            <p class="text-sm text-muted mb-16">Upload, store, and manage all case-related documents securely. Documents are encrypted and accessible only to authorised parties.</p>
+            <ul class="svc-list mb-16">
+              <li><i class="fas fa-check-circle"></i> Patta / Chitta records</li>
+              <li><i class="fas fa-check-circle"></i> Sale deed / Gift deed</li>
+              <li><i class="fas fa-check-circle"></i> FMB survey sketches</li>
+              <li><i class="fas fa-check-circle"></i> Encumbrance certificate</li>
+              <li><i class="fas fa-check-circle"></i> Aadhaar / Voter ID</li>
+            </ul>
+            <button class="btn btn-sm w-full" style="background:#5e35b1;color:#fff;justify-content:center" onclick="navTo('file')"><i class="fas fa-upload"></i> Upload Documents</button>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-card-head" style="background:#00695c"><i class="fas fa-calendar-check"></i><h4>e-Hearing</h4><p>Virtual hearing scheduling</p></div>
+          <div class="svc-card-body">
+            <p class="text-sm text-muted mb-16">Schedule and attend virtual land dispute hearings through the portal without physical appearance requirements in eligible cases.</p>
+            <ul class="svc-list mb-16">
+              <li><i class="fas fa-check-circle"></i> Online slot booking</li>
+              <li><i class="fas fa-check-circle"></i> Video conference link</li>
+              <li><i class="fas fa-check-circle"></i> Pre-hearing document review</li>
+              <li><i class="fas fa-check-circle"></i> Hearing reminder alerts</li>
+              <li><i class="fas fa-check-circle"></i> Post-hearing minutes</li>
+            </ul>
+            <button class="btn btn-sm w-full" style="background:#00695c;color:#fff;justify-content:center" onclick="showToast('e-Hearing portal opening…','info')"><i class="fas fa-video"></i> Book e-Hearing</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process Flowchart -->
+      <div class="section-title mb-4" style="font-size:1.1rem">How It Works</div>
+      <div class="divider mb-24"></div>
+      <div class="card section-alt" style="overflow:visible">
+        <div class="card-body" style="padding:28px">
+          <div style="display:flex;gap:0;overflow-x:auto;padding-bottom:8px" id="howItWorks">
+            <div style="flex:1;min-width:120px;text-align:center;position:relative;padding:0 10px">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 10px">1</div>
+              <div style="font-size:.78rem;font-weight:700;color:var(--navy)">Register</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Create account &amp; fill case form</div>
+              <div style="position:absolute;top:24px;right:-10px;font-size:1rem;color:var(--border)">→</div>
+            </div>
+            <div style="flex:1;min-width:120px;text-align:center;position:relative;padding:0 10px">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--sky);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 10px">2</div>
+              <div style="font-size:.78rem;font-weight:700;color:var(--navy)">Upload</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Submit all required documents</div>
+              <div style="position:absolute;top:24px;right:-10px;font-size:1rem;color:var(--border)">→</div>
+            </div>
+            <div style="flex:1;min-width:120px;text-align:center;position:relative;padding:0 10px">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 10px">3</div>
+              <div style="font-size:.78rem;font-weight:700;color:var(--navy)">Review</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Tahsildar verifies documents</div>
+              <div style="position:absolute;top:24px;right:-10px;font-size:1rem;color:var(--border)">→</div>
+            </div>
+            <div style="flex:1;min-width:120px;text-align:center;position:relative;padding:0 10px">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 10px">4</div>
+              <div style="font-size:.78rem;font-weight:700;color:var(--navy)">Hearing</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Attend scheduled hearing</div>
+              <div style="position:absolute;top:24px;right:-10px;font-size:1rem;color:var(--border)">→</div>
+            </div>
+            <div style="flex:1;min-width:120px;text-align:center;padding:0 10px">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin:0 auto 10px">5</div>
+              <div style="font-size:.78rem;font-weight:700;color:var(--navy)">Resolution</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Order issued &amp; case closed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="section-title mt-36 mb-4" style="font-size:1.1rem">Frequently Asked Questions</div>
+      <div class="divider mb-20"></div>
+      <div id="faqList">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What documents are required to file a land case? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Required documents include: (1) Identity proof — Aadhaar Card or Voter ID; (2) Land documents — Patta, Chitta, FMB Sketch; (3) Sale deed / Gift deed / Will; (4) Encumbrance Certificate (EC); (5) Survey field map; (6) Any previous court order (if applicable). All documents must be self-attested and uploaded in PDF format.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does it take to resolve a land dispute? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Resolution time depends on the complexity of the case. Simple boundary disputes with clear documents may be resolved within 60–90 days. Complex title disputes or cases requiring field surveys may take 6–12 months. The DLLMS aims to reduce average resolution time by 40% compared to offline processing.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is there any fee for filing a case online? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Filing a case on the DLLMS portal is free of charge. However, statutory court fees as prescribed under the applicable Revenue Act may apply at the hearing stage. These fees can be paid online via UPI, net banking, or debit card through the integrated payment gateway.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I track my case without logging in? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Yes. The Case Status page allows any citizen to track a case using only the Case ID (e.g., LL2026001). No login is required to view case status, hearing dates, or assigned officer details. Login is required only to file a case, upload documents, or access your personal dashboard.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I forget my Case ID? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Your Case ID is sent to your registered mobile number and email address immediately after filing. You can also log in to your citizen dashboard to view all your registered cases. If you still cannot locate it, contact the helpdesk at 1800-200-0080 with your Aadhaar number and survey details.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is the portal available in regional languages? <i class="fas fa-chevron-down"></i></button><div class="faq-a">Currently, the DLLMS portal is available in English and Tamil, with support for Hindi and other major Indian languages planned for Q3 2026. You can toggle languages using the button at the top of the page. Government orders and hearing notices are issued in the official language of the respective state.</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-services -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: CASE STATUS
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-casestatus">
+  <section class="section">
+    <div class="container">
+      <div class="section-title">Case Status Tracker</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">Track your litigation case using Case ID or by selecting land location details.</p>
+
+      <div class="search-box" style="max-width:800px">
+        <div class="tabs" style="margin-bottom:20px">
+          <button class="tab-btn active" onclick="switchSearchTab('id', this)">Search by Case ID</button>
+          <button class="tab-btn" onclick="switchSearchTab('geo', this)">Search by Location</button>
+        </div>
+
+        <!-- ID SEARCH -->
+        <div id="search-pane-id" class="search-tab-pane active">
+          <h3><i class="fas fa-search" style="margin-right:8px;color:var(--sky)"></i>Find by Case ID</h3>
+          <p class="text-sm text-muted mb-16">Enter your 10-digit Case ID (e.g., <strong style="font-family:var(--mono)">LL2026001</strong>)</p>
+          <div class="input-group">
+            <input type="text" id="caseIdInput" placeholder="Enter Case ID" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')searchCase()"/>
+            <button class="btn btn-primary" onclick="searchCase()"><i class="fas fa-search"></i> Search</button>
+          </div>
+        </div>
+
+        <!-- GEO SEARCH -->
+        <div id="search-pane-geo" class="search-tab-pane" style="display:none">
+          <h3><i class="fas fa-map-marker-alt" style="margin-right:8px;color:var(--sky)"></i>Find by Location</h3>
+          <p class="text-sm text-muted mb-16">Select geography details to find cases in your area.</p>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>State</label>
+              <select id="s-state" onchange="updateDistricts()"><option value="">Select State</option></select>
+            </div>
+            <div class="form-group">
+              <label>District</label>
+              <select id="s-dist" onchange="updateVillages()"><option value="">Select District</option></select>
+            </div>
+            <div class="form-group">
+              <label>Village</label>
+              <select id="s-vill"><option value="">Select Village</option></select>
+            </div>
+          </div>
+          <div class="form-row" style="grid-template-columns: 1fr 120px;">
+            <div class="form-group">
+              <label>Sector / Survey No. (Optional)</label>
+              <input type="text" id="s-survey" placeholder="e.g. 45/2A"/>
+            </div>
+            <div class="form-group" style="padding-top:22px">
+              <button class="btn btn-primary w-full" onclick="searchByGeo()"><i class="fas fa-search"></i> Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-result" id="caseResult">
+        <div class="cr-header">
+          <div>
+            <h4><i class="fas fa-folder-open" style="margin-right:8px;color:var(--accent)"></i><span id="r-id"></span> — <span id="r-type"></span></h4>
+            <div class="text-xs text-muted mt-4">CNR: <strong id="r-cnr" style="font-family:var(--mono);color:var(--navy)"></strong></div>
+          </div>
+          <span id="r-badge"></span>
+        </div>
+        
+        <div class="cr-dossier mt-20">
+          <div class="dossier-section">
+            <h5><i class="fas fa-balance-scale"></i> Legal Details</h5>
+            <div class="cr-grid">
+              <div class="cr-row"><span class="cr-label">Court / Bench</span><span class="cr-val fw-600" id="r-court"></span></div>
+              <div class="cr-row"><span class="cr-label">Act / Section</span><span class="cr-val" id="r-act"></span></div>
+              <div class="cr-row"><span class="cr-label">Petitioner Counsel</span><span class="cr-val" id="r-pet-adv"></span></div>
+              <div class="cr-row"><span class="cr-label">Respondent Counsel</span><span class="cr-val" id="r-res-adv"></span></div>
+            </div>
+          </div>
+
+          <div class="dossier-section mt-16">
+            <h5><i class="fas fa-user-friends"></i> Parties Involved</h5>
+            <div class="cr-grid">
+              <div class="cr-row"><span class="cr-label">Petitioner (Applicant)</span><span class="cr-val fw-600" id="r-applicant"></span></div>
+              <div class="cr-row"><span class="cr-label">Respondent</span><span class="cr-val" id="r-respondent"></span></div>
+            </div>
+          </div>
+
+          <div class="dossier-section mt-16">
+            <h5><i class="fas fa-map-marked-alt"></i> Property Details</h5>
+            <div class="cr-grid">
+              <div>
+                <div class="cr-row"><span class="cr-label">State / District</span><span class="cr-val" id="r-location"></span></div>
+                <div class="cr-row"><span class="cr-label">Village / Sector</span><span class="cr-val" id="r-village-info"></span></div>
+                <div class="cr-row"><span class="cr-label">Survey No.</span><span class="cr-val" style="font-family:var(--mono)" id="r-survey"></span></div>
+              </div>
+              <div>
+                <div class="cr-row"><span class="cr-label">PATTA No.</span><span class="cr-val" style="font-family:var(--mono)" id="r-patta"></span></div>
+                <div class="cr-row"><span class="cr-label">Land Area</span><span class="cr-val" id="r-area"></span></div>
+                <div class="cr-row"><span class="cr-label">Assigned Officer</span><span class="cr-val" id="r-officer"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossier-section mt-16">
+            <h5><i class="fas fa-file-invoice"></i> Prayer & Relief Sought</h5>
+            <div class="p-12 bg-slate border-radius mt-4 text-sm italic" id="r-prayer" style="line-height:1.6;border-left:4px solid var(--sky)"></div>
+          </div>
+
+          <div class="dossier-section mt-16">
+            <h5><i class="fas fa-calendar-check"></i> Status & Timeline</h5>
+            <div class="cr-grid">
+              <div class="cr-row"><span class="cr-label">Date Filed</span><span class="cr-val" id="r-filed"></span></div>
+              <div class="cr-row"><span class="cr-label">Next Hearing</span><span class="cr-val fw-600" style="color:var(--accent)" id="r-hearing"></span></div>
+            </div>
+            <div class="timeline mt-12">
+              <div id="r-timeline"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-20 flex gap-12">
+          <button class="btn btn-sky btn-sm" onclick="window.print()"><i class="fas fa-print"></i> Print Dossier</button>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Downloading Certified Copy Request Form...','info')"><i class="fas fa-download"></i> Certified Copy</button>
+        </div>
+      </div>
+
+      <div class="no-result" id="noResult">
+        <i class="fas fa-search" style="font-size:2.5rem;color:var(--border);display:block;margin-bottom:12px"></i>
+        <div class="fw-600 text-navy mb-8">No matching records found</div>
+        <p class="text-sm text-muted">Please refine your search criteria or contact the helpdesk at <strong>1800-200-0080</strong>.</p>
+      </div>
+
+      <!-- Geo Search Results Table -->
+      <div id="geoResultsSection" style="display:none" class="mt-24">
+        <div class="section-title" style="font-size:1.1rem"><i class="fas fa-list" style="margin-right:6px;color:var(--sky)"></i>Matching Litigation Records</div>
+        <div class="divider mb-16"></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Case ID</th><th>Applicant</th><th>Location</th><th>Type</th><th>Filed On</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="geoResultsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Case ID</th><th>Applicant</th><th>State / District</th><th>Type</th><th>Filed On</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="sampleCasesBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-casestatus -->
+
+<div class="page" id="page-judgments">
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-title">Supreme Court Judgment Library</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">Browse and search real-world Supreme Court judgments (Legal Precedents) for land dispute analysis.</p>
+
+      <div class="card p-20 mb-28" style="background:var(--offwhite)">
+        <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
+          <div style="flex:1;min-width:240px">
+            <label>Search by Party Name / Keyword</label>
+            <div class="input-icon-wrap">
+              <i class="fas fa-search i-icon"></i>
+              <input type="text" id="judgmentSearch" placeholder="e.g. Aligarh Muslim University" onkeydown="if(event.key==='Enter')fetchJudgments()"/>
+            </div>
+          </div>
+          <div style="width:140px">
+            <label>Year</label>
+            <select id="judgmentYear" onchange="fetchJudgments()">
+              <option value="">All Years</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="1950">1950</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="fetchJudgments()"><i class="fas fa-filter"></i> Filter</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Case Title</th><th>Petitioner</th><th>Respondent</th><th>Date</th><th>Year</th><th>Action</th></tr></thead>
+          <tbody id="judgmentsBody">
+            <tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted)">Loading judgments...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="judgmentCount" class="mt-12 text-sm text-muted"></div>
+    </div>
+  </section>
+</div><!-- /page-judgments -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: FILE A CASE
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-file">
+  <section class="section">
+    <div class="container">
+      <div class="section-title">File a New Case</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">Complete the form below to register your land dispute case. All fields marked * are mandatory.</p>
+
+      <div class="file-wrap">
+        <!-- Stepper -->
+        <div class="stepper" id="stepper">
+          <div class="step current" id="step1">Applicant Details</div>
+          <div class="step"         id="step2">Land Details</div>
+          <div class="step"         id="step3">Dispute Info</div>
+          <div class="step"         id="step4">Documents</div>
+          <div class="step"         id="step5">Review & Submit</div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="card step-pane active" id="sp1">
+          <div class="card-header"><i class="fas fa-user"></i> Step 1: Applicant Information</div>
+          <div class="card-body">
+            <div class="alert alert-info mb-20"><i class="fas fa-lock"></i><span>Your personal data is protected under the IT Act 2000 and used solely for case management purposes.</span></div>
+            <div class="form-row">
+              <div class="form-group"><label class="required">Full Name (as in Aadhaar)</label><input type="text" id="f-name" placeholder="e.g., Arjun Subramaniam"/></div>
+              <div class="form-group"><label class="required">Aadhaar Number</label><input type="text" id="f-aadhaar" placeholder="XXXX XXXX XXXX" maxlength="14" oninput="formatAadhaar(this)"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="required">Mobile Number</label><input type="tel" id="f-mobile" placeholder="10-digit mobile number" maxlength="10"/></div>
+              <div class="form-group"><label>Email Address</label><input type="email" id="f-email" placeholder="you@example.com"/></div>
+            </div>
+            <div class="form-group"><label class="required">Residential Address</label><textarea id="f-addr" rows="2" placeholder="Door No, Street, City, District, State — PIN Code"></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label class="required">District</label>
+                <select id="f-dist"><option value="">Select District</option><option>Chennai</option><option>Coimbatore</option><option>Madurai</option><option>Salem</option><option>Trichy</option><option>Vellore</option><option>Erode</option><option>Thanjavur</option><option>Tirunelveli</option><option>Dindigul</option></select>
+              </div>
+              <div class="form-group"><label class="required">Taluk / Tehsil</label><input type="text" id="f-taluk" placeholder="Enter taluk name"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Applicant Type</label>
+                <select id="f-apptype"><option>Individual</option><option>Joint Family</option><option>Institution / Trust</option><option>Government Body</option></select>
+              </div>
+              <div class="form-group"><label>Relationship to Land</label>
+                <select id="f-rel"><option>Owner</option><option>Co-owner</option><option>Heir / Legal Successor</option><option>Tenant</option><option>Mortgagee</option></select>
+              </div>
+            </div>
+            <div class="flex justify-between mt-8">
+              <div></div>
+              <button class="btn btn-primary" onclick="goStep(2)">Next: Land Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="card step-pane" id="sp2">
+          <div class="card-header"><i class="fas fa-map-marked-alt"></i> Step 2: Land Details</div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label class="required">Survey Number</label><input type="text" id="f-survey" placeholder="e.g., 45/2A"/></div>
+              <div class="form-group"><label class="required">PATTA Number</label><input type="text" id="f-patta" placeholder="e.g., PATTA-45210"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="required">Village / Hamlet</label><input type="text" id="f-village" placeholder="e.g., Chetpet"/></div>
+              <div class="form-group"><label class="required">Sub-Register Office</label><input type="text" id="f-sro" placeholder="e.g., Egmore"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="required">Land Area</label><input type="text" id="f-area" placeholder="e.g., 1.20 Acres / 0.48 Hectares"/></div>
+              <div class="form-group"><label class="required">Land Classification</label>
+                <select id="f-lclass"><option>Agricultural (Dry)</option><option>Agricultural (Wet)</option><option>Residential</option><option>Commercial</option><option>Forest / Reserve</option><option>Government Land</option></select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>North Boundary</label><input type="text" id="f-bn" placeholder="e.g., Road, Neighbour name"/></div>
+              <div class="form-group"><label>South Boundary</label><input type="text" id="f-bs" placeholder="e.g., Canal, Survey No."/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>East Boundary</label><input type="text" id="f-be" placeholder=""/></div>
+              <div class="form-group"><label>West Boundary</label><input type="text" id="f-bw" placeholder=""/></div>
+            </div>
+            <div class="flex justify-between mt-8">
+              <button class="btn btn-ghost" onclick="goStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-primary" onclick="goStep(3)">Next: Dispute Info <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="card step-pane" id="sp3">
+          <div class="card-header"><i class="fas fa-gavel"></i> Step 3: Dispute Information</div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label class="required">Dispute Type</label>
+                <select id="f-dtype"><option value="">Select Type</option><option>Boundary Dispute</option><option>Title Dispute</option><option>Encroachment</option><option>Illegal Possession</option><option>Succession / Inheritance</option><option>Partition</option><option>Mortgage / Loan Dispute</option><option>Government Acquisition Dispute</option></select>
+              </div>
+              <div class="form-group"><label class="required">Respondent / Opposite Party Name</label><input type="text" id="f-resp" placeholder="Full name of opposite party"/></div>
+            </div>
+            <div class="form-group"><label>Respondent Address / Contact</label><textarea id="f-respaddr" rows="2" placeholder="Optional — provide if known"></textarea></div>
+            <div class="form-group"><label class="required">Brief Description of Dispute</label><textarea id="f-desc" rows="5" placeholder="Describe the nature of the dispute, when it started, and any previous attempts at resolution..."></textarea><div class="form-hint">Minimum 100 characters. Be specific about dates, events, and claims.</div></div>
+            <div class="form-row">
+              <div class="form-group"><label>Relief Sought</label>
+                <select id="f-relief"><option>Declaration of Title</option><option>Demarcation / Boundary Survey</option><option>Eviction / Removal of Encroachment</option><option>Injunction</option><option>Compensation</option><option>Partition</option><option>Other</option></select>
+              </div>
+              <div class="form-group"><label>Any Prior Litigation?</label>
+                <select id="f-prior"><option>No</option><option>Yes — case pending in court</option><option>Yes — case disposed</option></select>
+              </div>
+            </div>
+            <div class="form-group"><label>Prior Case Reference (if any)</label><input type="text" id="f-priorref" placeholder="e.g., O.S. 123/2024, Madurai District Court"/></div>
+            <div class="flex justify-between mt-8">
+              <button class="btn btn-ghost" onclick="goStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-primary" onclick="goStep(4)">Next: Documents <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="card step-pane" id="sp4">
+          <div class="card-header"><i class="fas fa-paperclip"></i> Step 4: Upload Documents</div>
+          <div class="card-body">
+            <div class="alert alert-warn mb-16"><i class="fas fa-exclamation-triangle"></i><span>Upload files in PDF/JPG/PNG format. Maximum size: 5 MB per file. All documents must be clear and readable.</span></div>
+
+            <div style="margin-bottom:20px">
+              <label class="required">Identity Proof (Aadhaar / Voter ID)</label>
+              <div class="doc-upload-area" onclick="document.getElementById('upload-id').click()" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event,'id-list')">
+                <i class="fas fa-id-card"></i><span class="text-sm text-muted">Click or drag &amp; drop your identity proof</span>
+                <input type="file" id="upload-id" hidden accept=".pdf,.jpg,.jpeg,.png" onchange="addDocItem(this,'id-list')"/>
+              </div>
+              <div class="doc-list" id="id-list"></div>
+            </div>
+
+            <div style="margin-bottom:20px">
+              <label class="required">Land Document (Patta / Chitta)</label>
+              <div class="doc-upload-area" onclick="document.getElementById('upload-patta').click()">
+                <i class="fas fa-file-alt"></i><span class="text-sm text-muted">Click to upload Patta or Chitta record</span>
+                <input type="file" id="upload-patta" hidden accept=".pdf,.jpg,.jpeg,.png" onchange="addDocItem(this,'patta-list')"/>
+              </div>
+              <div class="doc-list" id="patta-list"></div>
+            </div>
+
+            <div style="margin-bottom:20px">
+              <label>FMB / Survey Sketch</label>
+              <div class="doc-upload-area" onclick="document.getElementById('upload-fmb').click()">
+                <i class="fas fa-drafting-compass"></i><span class="text-sm text-muted">Upload FMB sketch or survey map</span>
+                <input type="file" id="upload-fmb" hidden accept=".pdf,.jpg,.jpeg,.png" onchange="addDocItem(this,'fmb-list')"/>
+              </div>
+              <div class="doc-list" id="fmb-list"></div>
+            </div>
+
+            <div style="margin-bottom:20px">
+              <label>Additional Documents (Sale Deed, EC, Court Orders)</label>
+              <div class="doc-upload-area" onclick="document.getElementById('upload-other').click()">
+                <i class="fas fa-folder-plus"></i><span class="text-sm text-muted">Add any other supporting documents</span>
+                <input type="file" id="upload-other" hidden accept=".pdf,.jpg,.jpeg,.png" multiple onchange="addDocItem(this,'other-list')"/>
+              </div>
+              <div class="doc-list" id="other-list"></div>
+            </div>
+
+            <div class="flex justify-between mt-8">
+              <button class="btn btn-ghost" onclick="goStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-primary" onclick="goStep(5)">Next: Review <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="card step-pane" id="sp5">
+          <div class="card-header"><i class="fas fa-clipboard-check"></i> Step 5: Review &amp; Submit</div>
+          <div class="card-body">
+            <div class="alert alert-warn mb-16"><i class="fas fa-exclamation-triangle"></i><span>Please review all details carefully before submitting. Once submitted, the case ID cannot be changed.</span></div>
+
+            <div id="reviewContent" class="mb-20"></div>
+
+            <div class="form-group">
+              <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:normal">
+                <input type="checkbox" id="f-declare" style="width:auto;margin-top:3px"/>
+                <span class="text-sm">I hereby declare that the information furnished above is true and correct to the best of my knowledge and belief. I understand that providing false information is a punishable offence under the Indian Penal Code.</span>
+              </label>
+            </div>
+
+            <div class="case-id-box" id="caseIdBox">
+              <div><i class="fas fa-check-circle" style="font-size:2rem;color:var(--green);display:block;margin-bottom:8px"></i></div>
+              <h3>Case Filed Successfully!</h3>
+              <div class="cid" id="generatedCaseId"></div>
+              <p class="text-sm text-muted mt-8">Save this Case ID. A confirmation SMS and email have been sent to your registered contact.</p>
+              <button class="btn btn-primary btn-sm mt-12" onclick="navTo('casestatus')"><i class="fas fa-search"></i> Track This Case</button>
+              <button class="btn btn-ghost btn-sm mt-12" onclick="printCaseId()"><i class="fas fa-print"></i> Print Acknowledgement</button>
+            </div>
+
+            <div class="flex justify-between mt-16" id="submitBtns">
+              <button class="btn btn-ghost" onclick="goStep(4)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-green btn-lg" onclick="submitCase()"><i class="fas fa-paper-plane"></i> Submit Case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recently Filed Cases Section -->
+      <div id="recentFiledCasesSection" class="mt-36" style="display:none">
+        <div class="admin-section-title"><i class="fas fa-history"></i> Your Recently Filed Cases</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Case ID</th><th>Applicant</th><th>District</th><th>Type</th><th>Filed On</th><th>Status</th></tr></thead>
+            <tbody id="recentCasesBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-file -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: HELP
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-help">
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-title">Help &amp; Support</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">User guides, glossary, legal process overview, and contact channels.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" class="mb-28" id="helpGrid">
+        <div class="card">
+          <div class="card-header"><i class="fas fa-book-open"></i> User Guide</div>
+          <div class="card-body">
+            <ul class="svc-list">
+              <li><i class="fas fa-file-pdf"></i> <a href="#" onclick="showToast('Downloading guide…','info')">DLLMS Citizen Guide (PDF, 2.4 MB)</a></li>
+              <li><i class="fas fa-file-pdf"></i> <a href="#" onclick="showToast('Downloading guide…','info')">Document Checklist (PDF, 0.8 MB)</a></li>
+              <li><i class="fas fa-play-circle"></i> <a href="#" onclick="showToast('Loading video…','info')">How to File a Case (Video, 8 min)</a></li>
+              <li><i class="fas fa-play-circle"></i> <a href="#" onclick="showToast('Loading video…','info')">How to Track Your Case (Video, 4 min)</a></li>
+              <li><i class="fas fa-file-pdf"></i> <a href="#" onclick="showToast('Downloading…','info')">Admin / Officer Manual (PDF, 5.1 MB)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" style="background:#1a7340"><i class="fas fa-phone-alt"></i> Helpdesk Channels</div>
+          <div class="card-body">
+            <div class="ci-row">
+              <div class="ci-icon" style="background:var(--greenlt);color:var(--green)"><i class="fas fa-phone"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Toll-Free Helpline</strong><p style="color:var(--muted)">1800-200-0080 · Mon–Sat · 09:00–18:00 IST</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:#e7f3ff;color:#25d366"><i class="fab fa-whatsapp"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">WhatsApp Status Bot</strong><p style="color:var(--muted)">+91 98840-12345 · Message 'HI' for status</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:#e8f4fd;color:var(--sky)"><i class="fas fa-envelope"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Email Support</strong><p style="color:var(--muted)">support@dllms.gov.in · Response in 2 days</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:#fff4e5;color:#ff9800"><i class="fas fa-sms"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Mobile SMS Tracking</strong><p style="color:var(--muted)">SMS <strong>DLLMS &lt;CaseID&gt;</strong> to <strong>51969</strong></p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:var(--accentlt);color:var(--accent)"><i class="fas fa-comments"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Live Chat</strong><p style="color:var(--muted)">Portal Chatbot (24×7) · Agent (10:00-17:00)</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:#f0f7ff;color:#1da1f2"><i class="fab fa-twitter"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Social Media</strong><p style="color:var(--muted)">@dllms_india · Official portal updates</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:var(--redlt);color:var(--red)"><i class="fas fa-user-shield"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Nodal Grievance Officer</strong><p style="color:var(--muted)">Shri M. Karthikeyan, IAS (Special Secretary)</p></div>
+            </div>
+            <div class="ci-row">
+              <div class="ci-icon" style="background:var(--redlt);color:var(--red)"><i class="fas fa-flag"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Grievance Portal</strong><p style="color:var(--muted)"><a href="https://pgportal.gov.in" target="_blank" style="color:var(--accent);font-weight:600">pgportal.gov.in</a> · ID: MIN-LAND-2026</p></div>
+            </div>
+            <div class="ci-row" style="margin-bottom:0">
+              <div class="ci-icon" style="background:#f1f8e9;color:#558b2f"><i class="fas fa-map-marked-alt"></i></div>
+              <div class="ci-text"><strong style="color:var(--navy)">Physical Help Centers</strong><p style="color:var(--muted)">Visit any **Common Service Center (CSC)**</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" style="background:#5e35b1"><i class="fas fa-balance-scale"></i> Legal Process & Timeline</div>
+          <div class="card-body">
+            <p class="text-sm text-muted mb-12">Litigation follows a structured workflow under the Revenue Act. Estimated timelines vary based on case complexity.</p>
+            <div class="timeline-v" style="font-size:.82rem;border-left:2px dashed var(--border);padding-left:16px;margin-left:6px">
+              <div class="tv-item" style="margin-bottom:12px;position:relative"><div style="position:absolute;left:-21px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--purple)"></div><strong>Stage 1: Filing & Admission (1-7 Days)</strong><p class="text-xs text-muted">Aadhaar-based filing, document verification by Revenue Inspector, and generation of Case ID.</p></div>
+              <div class="tv-item" style="margin-bottom:12px;position:relative"><div style="position:absolute;left:-21px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--sky)"></div><strong>Stage 2: Notice Issuance (15 Days)</strong><p class="text-xs text-muted">Legal summons served to the respondent via registered post and digital dashboard.</p></div>
+              <div class="tv-item" style="margin-bottom:12px;position:relative"><div style="position:absolute;left:-21px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--accent)"></div><strong>Stage 3: Field Inspection (30 Days)</strong><p class="text-xs text-muted">Surveyor conducts site visit for boundary/encroachment verification. Reports uploaded to DLLMS.</p></div>
+              <div class="tv-item" style="margin-bottom:12px;position:relative"><div style="position:absolute;left:-21px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--blue)"></div><strong>Stage 4: Hearing & Evidence (60-90 Days)</strong><p class="text-xs text-muted">Statements recorded from both parties. Cross-verification of chitta/adangal records.</p></div>
+              <div class="tv-item" style="position:relative"><div style="position:absolute;left:-21px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--green)"></div><strong>Stage 5: Final Order (90-120 Days)</strong><p class="text-xs text-muted">Pronouncement of judgement by Tehsildar/Collector. Records updated in e-Patta system.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" style="background:#00695c"><i class="fas fa-spell-check"></i> Key Terms Glossary</div>
+          <div class="card-body" style="padding:0">
+            <table>
+              <tbody>
+                <tr><td class="fw-600 text-navy" style="min-width:110px">Patta</td><td class="text-sm text-muted">Primary ownership certificate for a specific piece of land.</td></tr>
+                <tr><td class="fw-600 text-navy">Chitta/Adangal</td><td class="text-sm text-muted">Extract of A-Register showing classification, tax, and crop details.</td></tr>
+                <tr><td class="fw-600 text-navy">FMB / Map</td><td class="text-sm text-muted">Field Measurement Book extract showing sketch and boundaries.</td></tr>
+                <tr><td class="fw-600 text-navy">Encumbrance</td><td class="text-sm text-muted">History of past transactions, mortgages, or liens on the property.</td></tr>
+                <tr><td class="fw-600 text-navy">Partition</td><td class="text-sm text-muted">Legal division of ancestral or joint property among legal heirs.</td></tr>
+                <tr><td class="fw-600 text-navy">Eviction</td><td class="text-sm text-muted">Legal removal of unauthorized occupants (Encroachers) from land.</td></tr>
+                <tr><td class="fw-600 text-navy">RDO</td><td class="text-sm text-muted">Revenue Divisional Officer — Appellate authority for Tehsildar orders.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- District Nodal Officers -->
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:24px" class="mb-28">
+        <div class="card">
+          <div class="card-header" style="background:#002f6c"><i class="fas fa-id-badge"></i> District Nodal Contacts for Litigation</div>
+          <div class="card-body" style="padding:0">
+            <table class="text-sm">
+              <thead><tr><th style="background:#f0f4f8">Region</th><th style="background:#f0f4f8">Nodal Officer</th><th style="background:#f0f4f8">Designation</th><th style="background:#f0f4f8">Control Room</th></tr></thead>
+              <tbody>
+                <tr><td>Chennai Central</td><td>Shri K. Sivakumar</td><td>Special Tahsildar</td><td>044-2345-001</td></tr>
+                <tr><td>Madurai West</td><td>Smt. R. Lakshmi</td><td>Revenue Inspector</td><td>0452-2456-010</td></tr>
+                <tr><td>Pune Suburban</td><td>Shri Amit Deshpandey</td><td>Sub-Registrar</td><td>020-2045-9981</td></tr>
+                <tr><td>Bangalore North</td><td>Shri S. Nagraj</td><td>Assistant Commissioner</td><td>080-6712-4400</td></tr>
+                <tr><td>Noida (GB Nagar)</td><td>Shri Vikas Bhati</td><td>DLO Coordinator</td><td>0120-2521-022</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" style="background:var(--accent)"><i class="fas fa-stopwatch"></i> SLA — Response Timelines</div>
+          <div class="card-body">
+            <div class="mb-12" style="border-bottom:1px solid var(--border);padding-bottom:10px">
+              <div class="flex justify-between text-xs fw-600 mb-4"><span>Query Response</span><span>24 Hours</span></div>
+              <div class="progress" style="height:6px"><div class="progress-bar" style="width:90%;background:var(--accent)"></div></div>
+            </div>
+            <div class="mb-12" style="border-bottom:1px solid var(--border);padding-bottom:10px">
+              <div class="flex justify-between text-xs fw-600 mb-4"><span>Grievance Redressal</span><span>48 Hours</span></div>
+              <div class="progress" style="height:6px"><div class="progress-bar" style="width:75%;background:var(--sky)"></div></div>
+            </div>
+            <div class="mb-12" style="border-bottom:1px solid var(--border);padding-bottom:10px">
+              <div class="flex justify-between text-xs fw-600 mb-4"><span>Field Inspection Call</span><span>07 Days</span></div>
+              <div class="progress" style="height:6px"><div class="progress-bar" style="width:60%;background:var(--green)"></div></div>
+            </div>
+            <div style="font-size:.74rem;color:var(--muted);text-align:center;font-style:italic">Calculated as average across all zones.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i>
+        <span>For legal representation assistance, contact <strong>NALSA (National Legal Services Authority)</strong> at <a href="https://nalsa.gov.in" target="_blank">nalsa.gov.in</a> — free legal aid is available for eligible citizens under Section 12 of the Legal Services Authorities Act 1987.</span>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-help -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: CONTACT
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="section">
+    <div class="container">
+      <div class="section-title">Contact Us</div>
+      <div class="divider"></div>
+      <p class="section-sub mb-28">Reach our helpdesk team through any of the channels below.</p>
+
+      <div class="contact-grid mb-28">
+        <div class="contact-info">
+          <h3><i class="fas fa-map-marker-alt" style="margin-right:8px;color:var(--accent)"></i>DLLMS Head Office</h3>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fas fa-building"></i></div>
+            <div class="ci-text"><strong>Address</strong><p>Ministry of Land Records &amp; Revenue<br>Survey House, 8th Floor<br>Kamarajar Salai, Chepauk<br>Chennai — 600 005, Tamil Nadu</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fas fa-phone"></i></div>
+            <div class="ci-text"><strong>Helpline (Toll-Free)</strong><p>1800-200-0080<br>Mon–Sat · 09:00 AM – 06:00 PM IST</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+            <div class="ci-text"><strong>Email</strong><p>support@dllms.gov.in<br>admin@dllms.gov.in (Official)</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><i class="fas fa-fax"></i></div>
+            <div class="ci-text"><strong>Fax / Grievance</strong><p>044-2890-0102<br><a href="https://pgportal.gov.in" target="_blank" style="color:var(--accent)">pgportal.gov.in</a></p></div>
+          </div>
+          <div class="map-placeholder" onclick="showToast('Opening map…','info')">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Click to view on Google Maps</span>
+            <span class="text-xs" style="color:#8a9fbe">Survey House, Chepauk, Chennai</span>
+          </div>
+          <div class="office-hours">
+            <strong><i class="fas fa-clock" style="margin-right:5px"></i>Office Hours</strong>
+            Monday – Friday: 09:30 AM – 06:00 PM<br>
+            Saturday: 09:30 AM – 01:00 PM<br>
+            Public holidays: Closed
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <div class="card-header"><i class="fas fa-paper-plane"></i> Send Us a Message</div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group"><label class="required">Full Name</label><input type="text" id="c-name" placeholder="Your name"/></div>
+                <div class="form-group"><label class="required">Mobile Number</label><input type="tel" id="c-mobile" placeholder="10-digit number" maxlength="10"/></div>
+              </div>
+              <div class="form-group"><label>Email Address</label><input type="email" id="c-email" placeholder="Optional"/></div>
+              <div class="form-group"><label class="required">Subject</label>
+                <select id="c-subject">
+                  <option value="">Select Subject</option>
+                  <option>Case Filing Assistance</option>
+                  <option>Document Upload Issue</option>
+                  <option>Case Status Query</option>
+                  <option>Technical Issue</option>
+                  <option>Hearing Rescheduling</option>
+                  <option>Feedback / Suggestion</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Case ID (if applicable)</label><input type="text" id="c-caseid" placeholder="e.g., LL2026001" oninput="this.value=this.value.toUpperCase()"/></div>
+              <div class="form-group"><label class="required">Message</label><textarea id="c-msg" rows="4" placeholder="Describe your query in detail..."></textarea></div>
+              <button class="btn btn-primary w-full" style="justify-content:center" onclick="submitContact()"><i class="fas fa-paper-plane"></i> Submit Message</button>
+              <p class="text-xs text-muted mt-8" style="text-align:center">We respond within 2 working days. For urgent matters, call 1800-200-0080.</p>
+            </div>
+          </div>
+
+          <!-- District Offices -->
+          <div class="card mt-20">
+            <div class="card-header" style="background:#1a7340"><i class="fas fa-map-pin"></i> Regional Offices</div>
+            <div class="card-body" style="padding:0">
+              <table>
+                <thead><tr><th>District</th><th>Officer</th><th>Phone</th></tr></thead>
+                <tbody>
+                  <tr><td>Chennai</td><td>Shri K. Ramachandran</td><td>044-2890-0110</td></tr>
+                  <tr><td>Coimbatore</td><td>Smt. P. Vijayalakshmi</td><td>0422-2301-445</td></tr>
+                  <tr><td>Madurai</td><td>Shri T. Balasubramanian</td><td>0452-2530-210</td></tr>
+                  <tr><td>Salem</td><td>Smt. R. Meenakshisundaram</td><td>0427-2211-305</td></tr>
+                  <tr><td>Trichy</td><td>Shri V. Annamalai</td><td>0431-2460-190</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-contact -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: LOGIN / REGISTER
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-login">
+  <section class="section section-alt">
+    <div class="container">
+      <div class="auth-container">
+        <div class="card">
+          <div class="card-header"><i class="fas fa-lock"></i> Citizen &amp; Officer Portal Login</div>
+          <div class="card-body">
+            <div class="tabs">
+              <button class="tab-btn active" onclick="switchTab('loginPane',this)"><i class="fas fa-sign-in-alt"></i> Login</button>
+              <button class="tab-btn" onclick="switchTab('registerPane',this)"><i class="fas fa-user-plus"></i> Register</button>
+              <button class="tab-btn" onclick="switchTab('adminPane',this)"><i class="fas fa-shield-alt"></i> Admin</button>
+            </div>
+
+            <!-- LOGIN -->
+            <div class="tab-pane active" id="loginPane">
+              <div class="role-grid mb-20">
+                <button class="role-btn selected" onclick="selectRole(this)"><i class="fas fa-user"></i><span>Citizen</span></button>
+                <button class="role-btn" onclick="selectRole(this)"><i class="fas fa-user-tie"></i><span>Officer / Official</span></button>
+              </div>
+              <div class="form-group"><label class="required">Registered Mobile / Aadhaar</label><input type="text" id="l-user" placeholder="Mobile number or Aadhaar last 4 digits"/></div>
+              <div class="form-group">
+                <label class="required">Password</label>
+                <div class="input-icon-wrap">
+                  <input type="password" id="l-pass" placeholder="Enter your password"/>
+                  <span class="i-icon" id="passToggle" onclick="togglePass('l-pass','passToggle')" style="right:11px;left:auto;cursor:pointer"><i class="fas fa-eye"></i></span>
+                </div>
+              </div>
+              <div class="flex justify-between items-center mb-16">
+                <label style="display:flex;align-items:center;gap:6px;font-weight:normal;cursor:pointer"><input type="checkbox" style="width:auto"/> <span class="text-sm text-muted">Remember me</span></label>
+                <a href="#" class="text-sm" onclick="showToast('Password reset OTP sent to your registered mobile','info')">Forgot password?</a>
+              </div>
+              <button class="btn btn-primary w-full" style="justify-content:center" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Login Securely</button>
+              <div class="divider-or">or login with</div>
+              <div class="social-login">
+                <button class="social-btn" onclick="showToast('DigiLocker login redirecting…','info')"><img src="data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' rx='4' fill='%230066CC'/%3E%3Ctext x='10' y='14' text-anchor='middle' font-size='8' fill='white' font-family='sans-serif'%3EDL%3C/text%3E%3C/svg%3E" width="20" height="20" alt="DigiLocker"/> DigiLocker</button>
+                <button class="social-btn" onclick="showToast('Aadhaar OTP login initiated…','info')"><i class="fas fa-fingerprint" style="color:#ff6600"></i> Aadhaar OTP</button>
+              </div>
+            </div>
+
+            <!-- REGISTER -->
+            <div class="tab-pane" id="registerPane">
+              <div class="alert alert-info mb-16"><i class="fas fa-info-circle"></i><span>Registration is required only for first-time case filing. Aadhaar-linked mobile number is mandatory.</span></div>
+              <div class="form-row">
+                <div class="form-group"><label class="required">Full Name</label><input type="text" id="r-name" placeholder="As in Aadhaar"/></div>
+                <div class="form-group"><label class="required">Mobile Number</label><input type="tel" id="r-mobile" placeholder="Aadhaar-linked mobile" maxlength="10"/></div>
+              </div>
+              <div class="form-group"><label class="required">Aadhaar Number</label><input type="text" id="r-aadhaar" placeholder="XXXX XXXX XXXX" maxlength="14" oninput="formatAadhaar(this)"/></div>
+              <div class="form-row">
+                <div class="form-group"><label>Email Address</label><input type="email" id="r-email" placeholder="Optional"/></div>
+                <div class="form-group"><label class="required">State</label>
+                  <select id="r-state"><option value="">Select State</option><option>Tamil Nadu</option><option>Karnataka</option><option>Kerala</option><option>Andhra Pradesh</option><option>Telangana</option><option>Maharashtra</option><option>Gujarat</option><option>Rajasthan</option><option>Uttar Pradesh</option><option>West Bengal</option></select>
+                </div>
+              </div>
+              <div class="form-group"><label class="required">Address</label><textarea id="r-addr" rows="2" placeholder="Residential address with PIN code"></textarea></div>
+              <div class="form-row">
+                <div class="form-group"><label class="required">Create Password</label>
+                  <input type="password" id="r-pass" placeholder="Min 8 characters" oninput="checkStrength(this)"/>
+                  <div class="strength-bar" id="strengthBar"></div>
+                  <div class="form-hint" id="strengthTxt">Password strength</div>
+                </div>
+                <div class="form-group"><label class="required">Confirm Password</label><input type="password" id="r-pass2" placeholder="Re-enter password"/></div>
+              </div>
+              <div class="form-group">
+                <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:normal">
+                  <input type="checkbox" id="r-terms" style="width:auto;margin-top:3px"/>
+                  <span class="text-sm text-muted">I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a> of DLLMS.</span>
+                </label>
+              </div>
+              <button class="btn btn-primary w-full" style="justify-content:center" onclick="doRegister()"><i class="fas fa-user-plus"></i> Register &amp; Get OTP</button>
+            </div>
+
+            <!-- ADMIN -->
+            <div class="tab-pane" id="adminPane">
+              <div class="alert alert-warn mb-16"><i class="fas fa-shield-alt"></i><span>Restricted access. Only authorised government officers may use this login.</span></div>
+              <div class="form-group"><label class="required">Officer ID / Employee Code</label><input type="text" id="a-user" placeholder="e.g., DLO-CHN-0042"/></div>
+              <div class="form-group"><label class="required">Password</label><input type="password" id="a-pass" placeholder="Secure password"/></div>
+              <div class="form-group"><label class="required">CAPTCHA</label>
+                <div style="background:#f7f9fc;border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center;font-family:var(--mono);letter-spacing:6px;font-size:1.2rem;color:var(--navy);margin-bottom:8px;user-select:none" id="captchaDisplay">A8K3Z</div>
+                <input type="text" id="a-captcha" placeholder="Enter the code above"/>
+              </div>
+              <button class="btn btn-primary w-full" style="justify-content:center" onclick="doAdminLogin()"><i class="fas fa-shield-alt"></i> Secure Officer Login</button>
+              <div class="alert alert-info mt-16" style="margin-bottom:0"><i class="fas fa-info-circle"></i><span>Access is logged and monitored. Unauthorised access is a criminal offence under IT Act 2000, Section 66.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-login -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+                              PAGE: ADMIN DASHBOARD
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div class="admin-topbar">
+    <div class="container">
+      <h3><i class="fas fa-tachometer-alt"></i> DLLMS Admin Dashboard — District Land Officer Panel</h3>
+      <div class="admin-nav">
+        <button class="active" onclick="showAdminSection('overview',this)">Overview</button>
+        <button onclick="showAdminSection('cases',this)">Case Management</button>
+        <button onclick="showAdminSection('reports',this)">Reports</button>
+        <button onclick="navTo('home')" style="margin-left:8px"><i class="fas fa-sign-out-alt"></i> Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Overview Section -->
+      <div class="admin-section active" id="adminOverview">
+        <div class="stats-grid mb-24">
+          <div class="stat-card"><div class="stat-icon" style="background:#002f6c"><i class="fas fa-folder"></i></div><div class="stat-info"><h3>247</h3><p>Total Cases</p><div class="trend trend-up"><i class="fas fa-arrow-up"></i> +12 this week</div></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#e8a000"><i class="fas fa-clock"></i></div><div class="stat-info"><h3>90</h3><p>Pending</p><div class="trend trend-dn"><i class="fas fa-arrow-down"></i> -3 since yesterday</div></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#1e73be"><i class="fas fa-sync-alt"></i></div><div class="stat-info"><h3>112</h3><p>Active</p><div class="trend trend-up"><i class="fas fa-arrow-up"></i> +8 this month</div></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#1a7340"><i class="fas fa-check-double"></i></div><div class="stat-info"><h3>45</h3><p>Resolved</p><div class="trend trend-up"><i class="fas fa-arrow-up"></i> +5 this month</div></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#5e35b1"><i class="fas fa-calendar-day"></i></div><div class="stat-info"><h3>18</h3><p>Hearings Today</p><div class="trend" style="color:var(--muted)">—</div></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#b71c1c"><i class="fas fa-exclamation-triangle"></i></div><div class="stat-info"><h3>7</h3><p>Overdue Cases</p><div class="trend trend-dn" style="color:var(--red)"><i class="fas fa-arrow-up"></i> Needs attention</div></div></div>
+        </div>
+
+        <!-- Charts Row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:28px" id="chartGrid">
+          <!-- Cases by Month -->
+          <div class="card" style="grid-column:span 2">
+            <div class="card-header"><i class="fas fa-chart-bar"></i> Cases Filed — Last 6 Months</div>
+            <div class="card-body">
+              <div class="mini-bar-chart" id="monthChart"></div>
+            </div>
+          </div>
+
+          <!-- Donut Chart -->
+          <div class="card">
+            <div class="card-header"><i class="fas fa-chart-pie"></i> Status Breakdown</div>
+            <div class="card-body" style="display:flex;flex-direction:column;align-items:center;gap:14px">
+              <svg class="donut-chart" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="55" fill="none" stroke="#f0f0f0" stroke-width="24"/>
+                <!-- Pending: 36.4% -->
+                <circle cx="70" cy="70" r="55" fill="none" stroke="#e8a000" stroke-width="24" stroke-dasharray="125.5 220" stroke-dashoffset="0" transform="rotate(-90 70 70)"/>
+                <!-- Active: 45.3% -->
+                <circle cx="70" cy="70" r="55" fill="none" stroke="#1e73be" stroke-width="24" stroke-dasharray="156.5 220" stroke-dashoffset="-125.5" transform="rotate(-90 70 70)"/>
+                <!-- Resolved: 18.2% -->
+                <circle cx="70" cy="70" r="55" fill="none" stroke="#1a7340" stroke-width="24" stroke-dasharray="62.8 220" stroke-dashoffset="-282" transform="rotate(-90 70 70)"/>
+                <text x="70" y="66" text-anchor="middle" font-size="11" fill="#002f6c" font-weight="700">247</text>
+                <text x="70" y="78" text-anchor="middle" font-size="7" fill="#5a6a7a">Total</text>
+              </svg>
+              <ul class="legend-list">
+                <li><span class="legend-dot" style="background:#e8a000"></span>Pending — 90 (36%)</li>
+                <li><span class="legend-dot" style="background:#1e73be"></span>Active — 112 (45%)</li>
+                <li><span class="legend-dot" style="background:#1a7340"></span>Resolved — 45 (18%)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Type Breakdown -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px" id="typeGrid">
+          <div class="card">
+            <div class="card-header"><i class="fas fa-list-ul"></i> Cases by Type</div>
+            <div class="card-body">
+              <div id="typeChart"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><i class="fas fa-map-marker-alt"></i> Cases by District</div>
+            <div class="card-body">
+              <div id="distChart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Management Section -->
+      <div class="admin-section" id="adminCases">
+        <div class="admin-section-title"><i class="fas fa-folder-open"></i> All Cases</div>
+        <div class="filter-bar">
+          <input type="text" placeholder="Search by Case ID / Applicant…" oninput="adminSearch(this.value)" style="max-width:240px;width:auto"/>
+          <select onchange="filterAdminStatus(this.value)" style="max-width:160px;width:auto">
+            <option value="">All Status</option>
+            <option>Pending</option><option>Active</option><option>Resolved</option><option>Closed</option>
+          </select>
+          <select onchange="filterAdminDistrict(this.value)" style="max-width:160px;width:auto">
+            <option value="">All Districts</option>
+            <option>Chennai</option><option>Coimbatore</option><option>Madurai</option><option>Salem</option><option>Trichy</option><option>Vellore</option><option>Erode</option>
+          </select>
+          <button class="btn btn-ghost btn-sm" onclick="adminSearch('')"><i class="fas fa-refresh"></i> Reset</button>
+          <button class="btn btn-green btn-sm" onclick="showToast('Exporting to CSV…','info')"><i class="fas fa-download"></i> Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Case ID</th><th>Applicant</th><th>District</th><th>Type</th><th>Filed</th><th>Next Hearing</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="adminCasesBody"></tbody>
+          </table>
+        </div>
+        <div class="mt-12 flex justify-between items-center">
+          <span class="text-sm text-muted" id="adminCount">Showing all cases</span>
+          <div class="flex gap-8">
+            <button class="btn btn-sm btn-ghost">← Prev</button>
+            <button class="btn btn-sm btn-ghost">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reports Section -->
+      <div class="admin-section" id="adminReports">
+        <div class="admin-section-title"><i class="fas fa-chart-line"></i> Reports &amp; Analytics</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+          <div class="card"><div class="card-body" style="text-align:center"><i class="fas fa-file-pdf" style="font-size:2.5rem;color:#b71c1c;display:block;margin-bottom:12px"></i><div class="fw-600 text-navy mb-4">Q1 2026 Litigation Report</div><div class="text-xs text-muted mb-16">Jan–Mar 2026 · 247 cases · 45 resolved</div><button class="btn btn-sm btn-primary w-full" style="justify-content:center" onclick="showToast('Generating report…','info')"><i class="fas fa-download"></i> Download PDF</button></div></div>
+          <div class="card"><div class="card-body" style="text-align:center"><i class="fas fa-file-excel" style="font-size:2.5rem;color:#1a7340;display:block;margin-bottom:12px"></i><div class="fw-600 text-navy mb-4">District-wise Case Data</div><div class="text-xs text-muted mb-16">All districts · Current FY 2025–26</div><button class="btn btn-sm btn-green w-full" style="justify-content:center" onclick="showToast('Preparing Excel…','info')"><i class="fas fa-download"></i> Download XLSX</button></div></div>
+          <div class="card"><div class="card-body" style="text-align:center"><i class="fas fa-chart-bar" style="font-size:2.5rem;color:var(--sky);display:block;margin-bottom:12px"></i><div class="fw-600 text-navy mb-4">Monthly Resolution Rate</div><div class="text-xs text-muted mb-16">Trend: +12% vs last quarter</div><button class="btn btn-sm btn-sky w-full" style="justify-content:center" onclick="showToast('Loading analytics…','info')"><i class="fas fa-eye"></i> View Analytics</button></div></div>
+          <div class="card"><div class="card-body" style="text-align:center"><i class="fas fa-users" style="font-size:2.5rem;color:var(--purple);display:block;margin-bottom:12px"></i><div class="fw-600 text-navy mb-4">User Activity Report</div><div class="text-xs text-muted mb-16">14,856 registered users · 2.1K active</div><button class="btn btn-sm w-full" style="justify-content:center;background:var(--purple);color:#fff" onclick="showToast('Loading user report…','info')"><i class="fas fa-download"></i> Download</button></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div><!-- /page-admin -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     UPDATE STATUS MODAL
+═══════════════════════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="updateModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-title"><i class="fas fa-edit" style="color:var(--sky)"></i> Update Case Status</div>
+    <p class="text-sm text-muted mb-16">Case ID: <strong style="font-family:var(--mono)" id="modalCaseId"></strong></p>
+    <div class="form-group"><label>New Status</label><select id="modalStatus"><option>Pending</option><option>Active</option><option>Resolved</option><option>Closed</option></select></div>
+    <div class="form-group"><label>Next Hearing Date</label><input type="date" id="modalDate"/></div>
+    <div class="form-group"><label>Assigned Officer</label><input type="text" id="modalOfficer" placeholder="Officer name and designation"/></div>
+    <div class="form-group"><label>Official Remarks</label><textarea rows="3" id="modalRemarks" placeholder="Enter official remarks or order summary…"></textarea></div>
+    <div class="flex gap-10 justify-between mt-8">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="saveUpdate()"><i class="fas fa-save"></i> Save Update</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     CHATBOT
+═══════════════════════════════════════════════════════════════════════════════ -->
+<button class="chatbot-fab" id="chatFab" onclick="toggleChat()" title="DLLMS Help Assistant" aria-label="Open chat">
+  <i class="fas fa-comments"></i>
+  <span class="chat-badge" id="chatBadge">1</span>
+</button>
+<div class="chatbot-win" id="chatWin">
+  <div class="chat-head">
+    <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+    <div class="chat-head-info"><h5>DLLMS Assistant</h5><p><span style="color:#5eff5e;font-size:.6rem">●</span> Online — Instant Help</p></div>
+    <button class="chat-close-btn" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg msg-bot">Vanakkam! 👋 I am your DLLMS virtual assistant. How can I help you today?</div>
+    <div class="msg msg-bot">You can ask me about: case filing, document requirements, case tracking, hearings, or portal access.</div>
+  </div>
+  <div class="chat-quick-btns">
+    <button class="cq-btn" onclick="quickChat('How do I file a case?')">File a case</button>
+    <button class="cq-btn" onclick="quickChat('What documents are needed?')">Documents needed</button>
+    <button class="cq-btn" onclick="quickChat('How to track my case?')">Track case</button>
+    <button class="cq-btn" onclick="quickChat('What are the fees?')">Fees</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Type your question…" onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button class="chat-send" onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h5>About DLLMS</h5>
+        <p>The Digital Land Litigation Management System is an initiative under the National e-Governance Plan (NeGP), developed by the National Informatics Centre (NIC) for the Ministry of Land Records &amp; Revenue, Government of India. The portal aims to digitise, streamline, and make transparent the entire land dispute resolution process across all Indian states and union territories.</p>
+        <p class="footer-visitor mt-8">Last Updated: <strong>09 April 2026</strong> · Visitors: <strong>2,14,856</strong> · Best viewed in Chrome/Firefox/Edge at 1024px+</p>
+        <div class="footer-social mt-12">
+          <div class="social-ico" title="Twitter"><i class="fab fa-twitter"></i></div>
+          <div class="social-ico" title="Facebook"><i class="fab fa-facebook-f"></i></div>
+          <div class="social-ico" title="YouTube"><i class="fab fa-youtube"></i></div>
+          <div class="social-ico" title="LinkedIn"><i class="fab fa-linkedin-in"></i></div>
+        </div>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navTo('home')"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" onclick="navTo('about')"><i class="fas fa-info-circle"></i> About DLLMS</a></li>
+          <li><a href="#" onclick="navTo('services')"><i class="fas fa-th-list"></i> Services</a></li>
+          <li><a href="#" onclick="navTo('casestatus')"><i class="fas fa-search"></i> Case Status</a></li>
+          <li><a href="#" onclick="navTo('file')"><i class="fas fa-file-alt"></i> File a Case</a></li>
+          <li><a href="#" onclick="navTo('help')"><i class="fas fa-question-circle"></i> Help / FAQ</a></li>
+          <li><a href="#" onclick="navTo('contact')"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          <li><a href="#" onclick="navTo('admin')"><i class="fas fa-shield-alt"></i> Admin Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Related Portals</h5>
+        <ul class="footer-links">
+          <li><a href="https://www.india.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> National Portal of India</a></li>
+          <li><a href="https://dilrmp.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> DILRMP Land Records</a></li>
+          <li><a href="https://ecourts.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> eCourts Services</a></li>
+          <li><a href="https://nalsa.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> NALSA Legal Aid</a></li>
+          <li><a href="https://www.surveyofindia.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Survey of India</a></li>
+          <li><a href="https://pgportal.gov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Grievance Portal</a></li>
+          <li><a href="https://mygov.in" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> MyGov India</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-phone"></i> 1800-200-0080 (Toll-Free)</a></li>
+          <li><a href="#"><i class="fas fa-envelope"></i> support@dllms.gov.in</a></li>
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Survey House, Chepauk, Chennai</a></li>
+        </ul>
+        <div style="margin-top:18px;padding:14px;background:rgba(255,255,255,.05);border-radius:var(--radius);border:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.74rem;color:rgba(255,255,255,.55);margin-bottom:6px">NIC Secured · ISO 27001 Certified</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <img src="data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='20' rx='3' fill='%23fff' opacity='.15'/%3E%3Ctext x='20' y='14' text-anchor='middle' font-size='7' fill='%23fff' font-family='sans-serif'%3ENIC%3C/text%3E%3C/svg%3E" alt="NIC"/>
+            <img src="data:image/svg+xml,%3Csvg width='50' height='20' viewBox='0 0 50 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='50' height='20' rx='3' fill='%23fff' opacity='.15'/%3E%3Ctext x='25' y='14' text-anchor='middle' font-size='7' fill='%23fff' font-family='sans-serif'%3ECERT-In%3C/text%3E%3C/svg%3E" alt="CERT-In"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ministry of Land Records &amp; Revenue, Government of India. All rights reserved.</span>
+      <div class="footer-policy">
+        <a href="#" onclick="showModal('Privacy Policy','This portal collects minimal personal data for case management purposes only, as per the IT Act 2000 and Data Protection guidelines. Data is never sold or shared with third parties without legal mandate.')">Privacy Policy</a>
+        <a href="#" onclick="showModal('Terms & Conditions','Use of this portal constitutes agreement to the terms laid down by the Ministry of Land Records & Revenue. Unauthorized access, data tampering, or misuse is a punishable offence.')">Terms &amp; Conditions</a>
+        <a href="#" onclick="showModal('Disclaimer','Information provided on this portal is for guidance only. Actual legal outcomes depend on applicable law and Revenue Court orders. The Ministry is not liable for any decisions based solely on portal data.')">Disclaimer</a>
+        <a href="#" onclick="showModal('Accessibility','This portal conforms to WCAG 2.1 Level AA guidelines. Font size adjustment, high contrast mode, and keyboard navigation are supported. Report accessibility issues to support@dllms.gov.in')">Accessibility</a>
+        <a href="#" onclick="showModal('Sitemap','Home | About | Services | Case Status | File Case | Help | Contact | Login | Admin Dashboard')">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Generic info modal -->
+<div class="modal-overlay" id="infoModal">
+  <div class="modal-box" style="max-width:500px">
+    <button class="modal-close" onclick="document.getElementById('infoModal').classList.remove('open')">×</button>
+    <div class="modal-title" id="infoTitle"></div>
+    <p class="text-sm text-muted" id="infoBody" style="line-height:1.7"></p>
+    <button class="btn btn-primary btn-sm mt-16" onclick="document.getElementById('infoModal').classList.remove('open')">Close</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+/* ─── DATA STORE ─── */
+let CASES = {};
+let ADMIN_CASES = [];
+let RECENT_CASES = [];
+let GEO_DATA = {};
+let JUDGMENTS = [];
+
+async function initData() {
+  try {
+    // Parallel fetch for speed
+    const [casesRes, geoRes] = await Promise.all([
+      fetch('/api/cases'),
+      fetch('/api/geo')
+    ]);
+    
+    const casesData = await casesRes.json();
+    if (casesData.success) {
+      ADMIN_CASES = casesData.data;
+      CASES = {};
+      ADMIN_CASES.forEach(c => { CASES[c.id] = c; });
+      renderSampleCasesTable(ADMIN_CASES);
+      renderAdminTable(ADMIN_CASES);
+    }
+
+    GEO_DATA = await geoRes.json();
+    populateStates();
+  } catch (err) {
+    console.error('Error initializing data:', err);
+    showToast('Failed to load system data', 'warn');
+  }
+}
+
+/* ─── NAVIGATION ─── */
+function navTo(page,e) {
+  if(e){e.preventDefault&&e.preventDefault();}
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  // Show target
+  const pg = document.getElementById('page-'+page);
+  if(pg){pg.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('nav-active'));
+  const navLink = document.getElementById('nav-'+page);
+  if(navLink) navLink.classList.add('nav-active');
+  // Update breadcrumb
+  const labels = {home:'Home',about:'About',services:'Services',casestatus:'Case Status',judgments:'Judgments',file:'File a Case',help:'Help & FAQs',contact:'Contact',login:'Login',admin:'Admin Dashboard'};
+  document.getElementById('breadcrumbCurrent').textContent = labels[page]||page;
+  // Close mobile nav
+  document.getElementById('navLinks').classList.remove('open');
+  // Side effects
+  if(page==='admin'){renderAdminCharts();renderAdminTable(ADMIN_CASES);}
+  if(page==='casestatus'){renderSampleCasesTable(ADMIN_CASES);}
+  if(page==='judgments' && JUDGMENTS.length === 0) fetchJudgments();
+  return false;
+}
+
+function toggleNav(){
+  const nav=document.getElementById('navLinks');
+  const ico=document.getElementById('hamburgerIcon');
+  nav.classList.toggle('open');
+  ico.className=nav.classList.contains('open')?'fas fa-times':'fas fa-bars';
+}
+
+/* ─── LANGUAGE TOGGLE ─── */
+let lang='en';
+const T={
+  'site-title':{en:'Digital Land Litigation<br>Management System',ta:'டிஜிட்டல் நில வழக்கு<br>மேலாண்மை அமைப்பு'},
+  'site-sub':{en:'Ministry of Land Records &amp; Revenue — Government of India',ta:'நில பதிவுகள் மற்றும் வருவாய் அமைச்சகம் — இந்திய அரசு'},
+  'nav-home':{en:'<i class="fas fa-home"></i> Home',ta:'<i class="fas fa-home"></i> முகப்பு'},
+  'nav-about':{en:'<i class="fas fa-info-circle"></i> About',ta:'<i class="fas fa-info-circle"></i> பற்றி'},
+  'nav-services':{en:'<i class="fas fa-th-list"></i> Services',ta:'<i class="fas fa-th-list"></i> சேவைகள்'},
+  'nav-casestatus':{en:'<i class="fas fa-search"></i> Case Status',ta:'<i class="fas fa-search"></i> வழக்கு நிலை'},
+  'nav-file':{en:'<i class="fas fa-file-alt"></i> File Case',ta:'<i class="fas fa-file-alt"></i> வழக்கு தாக்கல்'},
+  'nav-help':{en:'<i class="fas fa-question-circle"></i> Help',ta:'<i class="fas fa-question-circle"></i> உதவி'},
+  'nav-contact':{en:'<i class="fas fa-envelope"></i> Contact',ta:'<i class="fas fa-envelope"></i> தொடர்பு'}
+};
+function toggleLang(){
+  lang=lang==='en'?'ta':'en';
+  document.getElementById('langBtn').textContent=lang==='en'?'தமிழ்':'English';
+  Object.keys(T).forEach(k=>{const el=document.getElementById(k);if(el)el.innerHTML=T[k][lang];});
+  showToast(lang==='en'?'Switched to English':'தமிழுக்கு மாற்றப்பட்டது','info');
+}
+
+/* ─── ACCESSIBILITY ─── */
+let fs=15;
+function changeFontSize(d){fs=Math.min(20,Math.max(11,fs+d));document.documentElement.style.fontSize=fs+'px';}
+function resetAccess(){fs=15;document.documentElement.style.fontSize='15px';document.body.classList.remove('hc');}
+function toggleHighContrast(){document.body.classList.toggle('hc');showToast(document.body.classList.contains('hc')?'High contrast enabled':'High contrast disabled','info');}
+
+/* ─── CASE SEARCH REFINEMENT ─── */
+function switchSearchTab(type, btn) {
+  document.querySelectorAll('.search-tab-pane').forEach(p => p.style.display = 'none');
+  document.getElementById('search-pane-' + type).style.display = 'block';
+  document.querySelectorAll('.search-box .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function populateStates() {
+  const select = document.getElementById('s-state');
+  if(!select) return;
+  const states = Object.keys(GEO_DATA).sort();
+  select.innerHTML = '<option value="">Select State</option>' + states.map(s => `<option value="${s}">${s}</option>`).join('');
+}
+
+function updateDistricts() {
+  const state = document.getElementById('s-state').value;
+  const distSelect = document.getElementById('s-dist');
+  const villSelect = document.getElementById('s-vill');
+  distSelect.innerHTML = '<option value="">Select District</option>';
+  villSelect.innerHTML = '<option value="">Select Village</option>';
+  if (state && GEO_DATA[state]) {
+    const districts = Object.keys(GEO_DATA[state]).sort();
+    distSelect.innerHTML += districts.map(d => `<option value="${d}">${d}</option>`).join('');
+  }
+}
+
+function updateVillages() {
+  const state = document.getElementById('s-state').value;
+  const dist = document.getElementById('s-dist').value;
+  const villSelect = document.getElementById('s-vill');
+  villSelect.innerHTML = '<option value="">Select Village</option>';
+  if (state && dist && GEO_DATA[state][dist]) {
+    const villages = GEO_DATA[state][dist].sort();
+    villSelect.innerHTML += villages.map(v => `<option value="${v}">${v}</option>`).join('');
+  }
+}
+
+async function searchByGeo() {
+  const state = document.getElementById('s-state').value;
+  const dist = document.getElementById('s-dist').value;
+  const vill = document.getElementById('s-vill').value;
+  const survey = document.getElementById('s-survey').value.trim();
+
+  if(!state && !dist && !vill) {
+    showToast('Please select at least a state or district', 'warn');
+    return;
+  }
+
+  const query = new URLSearchParams({ state, district: dist, village: vill, survey });
+  try {
+    const res = await fetch('/api/cases?' + query.toString());
+    const data = await res.json();
+    const section = document.getElementById('geoResultsSection');
+    const tbody = document.getElementById('geoResultsBody');
+    const noRes = document.getElementById('noResult');
+    const resDetail = document.getElementById('caseResult');
+
+    resDetail.classList.remove('show');
+    if (data.success && data.count > 0) {
+      noRes.classList.remove('show');
+      section.style.display = 'block';
+      tbody.innerHTML = data.data.map(c => `
+        <tr>
+          <td><strong style="font-family:var(--mono);color:var(--sky);cursor:pointer" onclick="quickSearch('${c.id}')">${c.id}</strong></td>
+          <td>${c.applicant}</td>
+          <td>${c.district}, ${c.state || ''}</td>
+          <td>${c.type}</td>
+          <td>${c.filed}</td>
+          <td><span class="badge badge-${c.status.toLowerCase()}">${c.status}</span></td>
+          <td><button class="btn btn-sm btn-ghost" onclick="quickSearch('${c.id}')">View Details</button></td>
+        </tr>`).join('');
+      showToast(`Found ${data.count} case(s) in this location`, 'success');
+    } else {
+      section.style.display = 'none';
+      noRes.classList.add('show');
+    }
+  } catch (err) {
+    console.error('Geo search error:', err);
+  }
+}
+
+function searchCase(){
+  const id=document.getElementById('caseIdInput').value.trim().toUpperCase();
+  const c=CASES[id];
+  const res=document.getElementById('caseResult');
+  const noRes=document.getElementById('noResult');
+  const geoSec=document.getElementById('geoResultsSection');
+
+  if(!c){
+    res.classList.remove('show');
+    noRes.classList.add('show');
+    geoSec.style.display = 'none';
+    return;
+  }
+  noRes.classList.remove('show');
+  geoSec.style.display = 'none';
+  
+  // Populate Basic
+  document.getElementById('r-id').textContent=c.id;
+  document.getElementById('r-cnr').textContent=c.cnr || 'N/A';
+  document.getElementById('r-type').textContent=c.type;
+  document.getElementById('r-badge').innerHTML=`<span class="badge badge-${c.status.toLowerCase()}">${c.status}</span>`;
+  
+  // Legal Details
+  document.getElementById('r-court').textContent=c.court || 'Revenue Court';
+  document.getElementById('r-act').textContent=c.act || 'Land Revenue Act';
+  document.getElementById('r-pet-adv').textContent=c.petitionerAdvocate || 'Self-Represented';
+  document.getElementById('r-res-adv').textContent=c.respondentAdvocate || 'Pending Appointment';
+  
+  // Parties
+  document.getElementById('r-applicant').textContent=c.applicant;
+  document.getElementById('r-respondent').textContent=c.respondent;
+  
+  // Property
+  document.getElementById('r-location').textContent=(c.district || 'N/A') + (c.state ? ', ' + c.state : '');
+  document.getElementById('r-village-info').textContent=(c.village || 'N/A') + (c.taluka ? ' / ' + c.taluka : '');
+  document.getElementById('r-survey').textContent=c.survey || 'N/A';
+  document.getElementById('r-patta').textContent=c.patta || 'N/A';
+  document.getElementById('r-area').textContent=c.area || 'N/A';
+  document.getElementById('r-officer').textContent=c.officer || 'Unassigned';
+  
+  // Prayer
+  document.getElementById('r-prayer').textContent=c.prayer || 'Application for dispute resolution regarding title/boundary.';
+  
+  // Status
+  document.getElementById('r-filed').textContent=c.filed || 'N/A';
+  document.getElementById('r-hearing').textContent=c.nextHearing || 'TBD';
+  // Timeline
+  const tl=document.getElementById('r-timeline');
+  tl.innerHTML=(c.timeline || []).map((t,i)=>`
+    <div class="tl-item">
+      <div class="tl-dot-col">
+        <div class="tl-dot${t.u?' upcoming':''}"></div>
+        ${i<(c.timeline.length-1)?'<div class="tl-line"></div>':''}
+      </div>
+      <div class="tl-text" style="margin-bottom:4px">
+        <p${t.u?' style="color:var(--accent)"':''}>${t.e}</p>
+        <span>${t.d}${t.u?' <strong>(Upcoming)</strong>':''}</span>
+      </div>
+    </div>`).join('');
+  res.classList.add('show');
+}
+
+/* ─── JUDGMENTS LIBRARY ─── */
+async function fetchJudgments() {
+  const search = document.getElementById('judgmentSearch').value.trim();
+  const year = document.getElementById('judgmentYear').value;
+  const tbody = document.getElementById('judgmentsBody');
+  const countBox = document.getElementById('judgmentCount');
+
+  tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted)"><i class="fas fa-spinner fa-spin"></i> Searching legal database...</td></tr>';
+  
+  const query = new URLSearchParams({ search, year });
+  try {
+    const res = await fetch('/api/judgments?' + query.toString());
+    const data = await res.json();
+    if (data.success) {
+      JUDGMENTS = data.data;
+      if (data.count === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted)">No judgments found matching your criteria.</td></tr>';
+      } else {
+        tbody.innerHTML = data.data.map(j => `
+          <tr>
+            <td class="fw-600 text-navy">${j.title}</td>
+            <td class="text-xs">${j.petitioner}</td>
+            <td class="text-xs">${j.respondent}</td>
+            <td>${j.date}</td>
+            <td><span class="badge badge-active">${j.year}</span></td>
+            <td><a href="/${j.path.replace(/\\/g, '/')}" target="_blank" class="btn btn-sm btn-outline"><i class="fas fa-file-pdf"></i> View</a></td>
+          </tr>`).join('');
+      }
+      countBox.textContent = `Found ${data.count} judgment(s)${data.count > 499 ? ' (Limited to top 500)' : ''}`;
+    }
+  } catch (err) {
+    console.error('Fetch judgments error:', err);
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--red)">Failed to load judgments.</td></tr>';
+  }
+}
+
+/* ─── SAMPLE CASES TABLE ─── */
+let sFilter='', dFilter='', stFilter='';
+function renderSampleCasesTable(data){
+  const tbody=document.getElementById('sampleCasesBody');
+  if(!tbody)return;
+  tbody.innerHTML=data.map(c=>`
+    <tr>
+      <td><strong style="font-family:var(--mono);cursor:pointer;color:var(--sky)" onclick="quickSearch('${c.id}')">${c.id}</strong></td>
+      <td>${c.applicant}</td><td>${c.district}</td><td>${c.type}</td><td>${c.area}</td><td>${c.filed}</td>
+      <td><span class="badge badge-${c.status.toLowerCase()}">${c.status}</span></td>
+      <td><button class="btn btn-sm btn-sky" onclick="quickSearch('${c.id}')"><i class="fas fa-eye"></i> View</button></td>
+    </tr>`).join('');
+}
+function quickSearch(id){
+  document.getElementById('caseIdInput').value=id;
+  searchCase();
+  document.querySelector('.search-box').scrollIntoView({behavior:'smooth'});
+}
+function filterSampleTable(v){sFilter=v;applySampleFilters();}
+function filterByDistrict(v){dFilter=v;applySampleFilters();}
+function filterByStatus(v){stFilter=v;applySampleFilters();}
+function applySampleFilters(){
+  let d=ADMIN_CASES;
+  if(sFilter)d=d.filter(c=>c.type===sFilter);
+  if(dFilter)d=d.filter(c=>c.district===dFilter);
+  if(stFilter)d=d.filter(c=>c.status===stFilter);
+  renderSampleCasesTable(d);
+}
+
+/* ─── MULTI-STEP FORM ─── */
+let currentStep=1;
+function goStep(n){
+  if(n>currentStep){
+    // Validate current step
+    if(!validateStep(currentStep))return;
+  }
+  document.getElementById('sp'+currentStep).classList.remove('active');
+  document.getElementById('step'+currentStep).classList.remove('current');
+  if(n<currentStep){
+    document.getElementById('step'+currentStep).classList.remove('done');
+  } else {
+    document.getElementById('step'+currentStep).classList.add('done');
+  }
+  currentStep=n;
+  document.getElementById('sp'+n).classList.add('active');
+  document.getElementById('step'+n).classList.add('current');
+  if(n===5)buildReview();
+  document.querySelector('.file-wrap').scrollIntoView({behavior:'smooth'});
+}
+function validateStep(s){
+  if(s===1){
+    const name=document.getElementById('f-name').value.trim();
+    const mobile=document.getElementById('f-mobile').value.trim();
+    const dist=document.getElementById('f-dist').value;
+    if(!name){showToast('Please enter your full name','warn');return false;}
+    if(!mobile||mobile.length<10){showToast('Please enter a valid 10-digit mobile number','warn');return false;}
+    if(!dist){showToast('Please select your district','warn');return false;}
+  }
+  if(s===2){
+    if(!document.getElementById('f-survey').value.trim()){showToast('Please enter the survey number','warn');return false;}
+    if(!document.getElementById('f-area').value.trim()){showToast('Please enter the land area','warn');return false;}
+  }
+  if(s===3){
+    if(!document.getElementById('f-dtype').value){showToast('Please select the dispute type','warn');return false;}
+    if(!document.getElementById('f-resp').value.trim()){showToast('Please enter the respondent name','warn');return false;}
+    const desc=document.getElementById('f-desc').value.trim();
+    if(desc.length<50){showToast('Please provide a more detailed description (min 50 characters)','warn');return false;}
+  }
+  return true;
+}
+function buildReview(){
+  const v=id=>document.getElementById(id)?document.getElementById(id).value||'—':'—';
+  document.getElementById('reviewContent').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="card"><div class="card-header" style="padding:10px 14px;font-size:.8rem"><i class="fas fa-user"></i> Applicant</div><div class="card-body" style="padding:12px 14px;font-size:.82rem">
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Name</span><span class="cr-val">${v('f-name')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Mobile</span><span class="cr-val">${v('f-mobile')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">District</span><span class="cr-val">${v('f-dist')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Taluk</span><span class="cr-val">${v('f-taluk')}</span></div>
+      </div></div>
+      <div class="card"><div class="card-header" style="padding:10px 14px;font-size:.8rem"><i class="fas fa-map-marked-alt"></i> Land Details</div><div class="card-body" style="padding:12px 14px;font-size:.82rem">
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Survey No.</span><span class="cr-val" style="font-family:var(--mono)">${v('f-survey')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">PATTA No.</span><span class="cr-val" style="font-family:var(--mono)">${v('f-patta')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Area</span><span class="cr-val">${v('f-area')}</span></div>
+        <div class="cr-row" style="padding:7px 0"><span class="cr-label">Village</span><span class="cr-val">${v('f-village')}</span></div>
+      </div></div>
+    </div>
+    <div class="card mt-12"><div class="card-header" style="padding:10px 14px;font-size:.8rem"><i class="fas fa-gavel"></i> Dispute</div><div class="card-body" style="padding:12px 14px;font-size:.82rem">
+      <div class="cr-row" style="padding:7px 0"><span class="cr-label">Type</span><span class="cr-val fw-600">${v('f-dtype')}</span></div>
+      <div class="cr-row" style="padding:7px 0"><span class="cr-label">Respondent</span><span class="cr-val">${v('f-resp')}</span></div>
+      <div class="cr-row" style="padding:7px 0"><span class="cr-label">Relief Sought</span><span class="cr-val">${v('f-relief')}</span></div>
+    </div></div>`;
+}
+async function submitCase(){
+  if(!document.getElementById('f-declare').checked){showToast('Please check the declaration checkbox to proceed','warn');return;}
+  
+  const v = id => document.getElementById(id) ? document.getElementById(id).value : '';
+  const cid='LL2026'+String(Math.floor(Math.random()*900)+1000).substring(1);
+  const now = new Date();
+  const filedDate = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  const payload = {
+    id: cid,
+    applicant: v('f-name'),
+    dist: v('f-dist'), // backend currently expects 'district' or 'dist'? let's check
+    district: v('f-dist'),
+    taluka: v('f-taluk'),
+    village: v('f-village'),
+    survey: v('f-survey'),
+    patta: v('f-patta'),
+    area: v('f-area'),
+    type: v('f-dtype'),
+    filed: filedDate
+  };
+
+  try {
+    const res = await fetch('/api/records', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    
+    if (result.success) {
+      document.getElementById('generatedCaseId').textContent=cid;
+      document.getElementById('caseIdBox').classList.add('show');
+      document.getElementById('submitBtns').style.display='none';
+      
+      // Add to recent cases list
+      RECENT_CASES.unshift(result.data);
+      renderRecentCasesTable();
+      document.getElementById('recentFiledCasesSection').style.display = 'block';
+
+      // Update global store
+      CASES[cid] = result.data;
+      ADMIN_CASES.unshift(result.data);
+
+      // Update steppers
+      for(let i=1;i<=5;i++){document.getElementById('step'+i).classList.remove('current');document.getElementById('step'+i).classList.add('done');}
+      showToast('Case '+cid+' filed successfully!','success');
+    } else {
+      showToast('Error filing case: ' + result.message, 'warn');
+    }
+  } catch (err) {
+    console.error('Submission error:', err);
+    showToast('Failed to connect to government server', 'warn');
+  }
+}
+
+function renderRecentCasesTable() {
+  const tbody = document.getElementById('recentCasesBody');
+  if(!tbody) return;
+  tbody.innerHTML = RECENT_CASES.map(c => `
+    <tr>
+      <td><strong style="font-family:var(--mono);color:var(--sky)">${c.id}</strong></td>
+      <td>${c.applicant}</td>
+      <td>${c.district}</td>
+      <td>${c.type}</td>
+      <td>${c.filed}</td>
+      <td><span class="badge badge-pending">Pending</span></td>
+    </tr>
+  `).join('');
+}
+function printCaseId(){showToast('Preparing acknowledgement for printing…','info');}
+
+/* ─── DOCUMENT UPLOAD ─── */
+function addDocItem(input,listId){
+  const list=document.getElementById(listId);
+  Array.from(input.files).forEach(f=>{
+    if(f.size>5*1024*1024){showToast('File '+f.name+' exceeds 5 MB limit','warn');return;}
+    const div=document.createElement('div');div.className='doc-item';
+    const ext=f.name.split('.').pop().toUpperCase();
+    const icon={'PDF':'fa-file-pdf','JPG':'fa-file-image','JPEG':'fa-file-image','PNG':'fa-file-image'}[ext]||'fa-file';
+    div.innerHTML=`<div class="doc-name"><i class="fas ${icon}" style="color:var(--sky)"></i>${f.name} <span class="text-xs text-muted">(${(f.size/1024).toFixed(1)} KB)</span></div><button class="doc-remove" onclick="this.parentElement.remove()" title="Remove"><i class="fas fa-times"></i></button>`;
+    list.appendChild(div);
+  });
+  showToast(input.files.length+' file(s) added','success');
+  input.value='';
+}
+function handleDrop(e,listId){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const dt=e.dataTransfer;
+  if(dt.files.length){
+    const fakeInput={files:dt.files};
+    addDocItem(fakeInput,listId);
+  }
+}
+
+/* ─── AUTH ─── */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function selectRole(btn){document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
+function doLogin(){
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value.trim();
+  if(!u||!p){showToast('Please enter your credentials','warn');return;}
+  showToast('Login successful! Redirecting to dashboard…','success');
+  setTimeout(()=>navTo('admin'),1200);
+}
+function doRegister(){
+  const n=document.getElementById('r-name').value.trim();
+  const m=document.getElementById('r-mobile').value.trim();
+  const a=document.getElementById('r-aadhaar').value.replace(/\s/g,'');
+  if(!n){showToast('Please enter your name','warn');return;}
+  if(m.length<10){showToast('Please enter a valid 10-digit mobile number','warn');return;}
+  if(a.length!==12){showToast('Please enter a valid 12-digit Aadhaar number','warn');return;}
+  if(!document.getElementById('r-terms').checked){showToast('Please accept the Terms & Conditions','warn');return;}
+  showToast('OTP sent to your Aadhaar-linked mobile! Check SMS to verify.','success');
+}
+function doAdminLogin(){
+  const cap=document.getElementById('a-captcha').value.trim().toUpperCase();
+  if(cap!=='A8K3Z'){showToast('Incorrect CAPTCHA. Please try again.','warn');return;}
+  showToast('Admin login successful! Loading dashboard…','success');
+  setTimeout(()=>navTo('admin'),1200);
+}
+function togglePass(id,toggleId){
+  const inp=document.getElementById(id);
+  const ico=document.querySelector('#'+toggleId+' i');
+  if(inp.type==='password'){inp.type='text';ico.className='fas fa-eye-slash';}
+  else{inp.type='password';ico.className='fas fa-eye';}
+}
+function checkStrength(inp){
+  const v=inp.value;const bar=document.getElementById('strengthBar');const txt=document.getElementById('strengthTxt');
+  let s=0;
+  if(v.length>=8)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;
+  const w=['','12.5%','37.5%','62.5%','100%'];const c=['','#b71c1c','#e8a000','#1e73be','#1a7340'];const l=['','Weak','Fair','Good','Strong'];
+  bar.style.width=w[s];bar.style.background=c[s];
+  txt.textContent=l[s]?('Strength: '+l[s]):'Password strength';
+  txt.style.color=c[s];
+}
+
+/* ─── CONTACT ─── */
+function submitContact(){
+  const n=document.getElementById('c-name').value.trim();
+  const m=document.getElementById('c-mobile').value.trim();
+  const s=document.getElementById('c-subject').value;
+  const msg=document.getElementById('c-msg').value.trim();
+  if(!n){showToast('Please enter your name','warn');return;}
+  if(m.length<10){showToast('Please enter a valid mobile number','warn');return;}
+  if(!s){showToast('Please select a subject','warn');return;}
+  if(!msg){showToast('Please enter your message','warn');return;}
+  showToast('Your message has been submitted. We will respond within 2 working days.','success');
+  document.getElementById('c-name').value='';document.getElementById('c-mobile').value='';
+  document.getElementById('c-subject').value='';document.getElementById('c-msg').value='';
+}
+
+/* ─── ADMIN ─── */
+let afStatus='',afDistrict='';
+function renderAdminTable(data){
+  const tbody=document.getElementById('adminCasesBody');
+  if(!tbody)return;
+  tbody.innerHTML=data.map(c=>`
+    <tr>
+      <td><strong style="font-family:var(--mono);color:var(--sky)">${c.id}</strong></td>
+      <td>${c.applicant}</td><td>${c.district}</td><td>${c.type}</td>
+      <td>${c.filed}</td><td>${c.nextHearing}</td>
+      <td><span class="badge badge-${c.status.toLowerCase()}">${c.status}</span></td>
+      <td><button class="btn btn-sm btn-primary" onclick="openModal('${c.id}')"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-sm btn-sky" style="margin-left:4px" onclick="quickSearch('${c.id}');navTo('casestatus')"><i class="fas fa-eye"></i></button></td>
+    </tr>`).join('');
+  document.getElementById('adminCount').textContent=`Showing ${data.length} case(s)`;
+}
+function adminSearch(v){
+  v=v.toLowerCase();
+  const d=v?ADMIN_CASES.filter(c=>c.id.toLowerCase().includes(v)||c.applicant.toLowerCase().includes(v)||c.district.toLowerCase().includes(v)):ADMIN_CASES;
+  renderAdminTable(applyAdminFilters(d));
+}
+function filterAdminStatus(v){afStatus=v;renderAdminTable(applyAdminFilters(ADMIN_CASES));}
+function filterAdminDistrict(v){afDistrict=v;renderAdminTable(applyAdminFilters(ADMIN_CASES));}
+function applyAdminFilters(d){
+  if(afStatus)d=d.filter(c=>c.status===afStatus);
+  if(afDistrict)d=d.filter(c=>c.district===afDistrict);
+  return d;
+}
+function showAdminSection(id,btn){
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('admin'+id.charAt(0).toUpperCase()+id.slice(1)).classList.add('active');
+  document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(id==='cases')renderAdminTable(ADMIN_CASES);
+}
+function openModal(cid){
+  document.getElementById('modalCaseId').textContent=cid;
+  const c=CASES[cid];
+  if(c){
+    document.getElementById('modalStatus').value=c.status;
+    document.getElementById('modalOfficer').value=c.officer;
+  }
+  document.getElementById('updateModal').classList.add('open');
+}
+function closeModal(){document.getElementById('updateModal').classList.remove('open');}
+function saveUpdate(){
+  const cid=document.getElementById('modalCaseId').textContent;
+  const st=document.getElementById('modalStatus').value;
+  const c=CASES[cid];if(c)c.status=st;
+  showToast('Case '+cid+' updated to: '+st,'success');
+  closeModal();
+  renderAdminTable(ADMIN_CASES);
+}
+
+/* ─── ADMIN CHARTS ─── */
+async function renderAdminCharts(){
+  const mc=document.getElementById('monthChart');
+  const tc=document.getElementById('typeChart');
+  const dc=document.getElementById('distChart');
+  
+  try {
+    const res = await fetch('/api/stats');
+    const result = await res.json();
+    if (!result.success) return;
+    const stats = result.data;
+
+    // 1. Monthly Chart
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const curMonth = new Date().getMonth();
+    const displayMonths = [];
+    for(let i=5; i>=0; i--) {
+       let mIdx = (curMonth - i + 12) % 12;
+       displayMonths.push(months[mIdx]);
+    }
+    
+    /* ─── CLICK SOUNDS & NOTI ─── */
+const CLICK_SOUND = new Audio("data:audio/wav;base64,UklGRl9vT1R3YXZlZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU92T1VEP09ES0RDRD9CP0I/Qj9CQEJCQ0JDQ0NDQ0NDQ0RDREREREVFRUVGRkZGRkZGR0dHR0dISEhISElJSUpKSkpKS0tLS0tMTE");
+function playClick() {
+  CLICK_SOUND.currentTime = 0;
+  CLICK_SOUND.play().catch(e => {});
+}
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('button, a, .tab-btn, .cq-btn, .nav-noti')) {
+    playClick();
+  }
+});
+
+function toggleNoti(e) {
+  e.stopPropagation();
+  const d = document.getElementById('notiDropdown');
+  d.classList.toggle('open');
+}
+window.addEventListener('click', () => {
+  document.getElementById('notiDropdown').classList.remove('open');
+});
+
+function addNotification(msg, type='info', time='Just now') {
+  const list = document.getElementById('notiItems');
+  const icon = type === 'success' ? 'fa-check-circle text-green' : (type === 'warn' ? 'fa-exclamation-triangle text-orange' : 'fa-info-circle text-sky');
+  const div = document.createElement('div');
+  div.className = 'noti-item';
+  div.innerHTML = `<i class="fas ${icon}"></i><div><p>${msg}</p><span>${time}</span></div>`;
+  list.prepend(div);
+  const count = document.getElementById('notiCount');
+  count.textContent = parseInt(count.textContent) + 1;
+  showToast(msg, type);
+}
+
+/* ─── CHATBOT GEMINI INTEGRATION ─── */
+async function sendChat() {
+  const inp = document.getElementById('chatInput');
+  const msg = inp.value.trim();
+  if(!msg) return;
+  
+  const box = document.getElementById('chatMsgs');
+  box.innerHTML += `<div class="msg msg-user">${msg}</div>`;
+  inp.value = '';
+  box.scrollTop = box.scrollHeight;
+  
+  // Show Typing
+  const typing = document.createElement('div');
+  typing.className = 'msg msg-typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  box.appendChild(typing);
+  box.scrollTop = box.scrollHeight;
+  
+  try {
+    const res = await fetch('/api/chat?query=' + encodeURIComponent(msg));
+    const data = await res.json();
+    typing.remove();
+    box.innerHTML += `<div class="msg msg-bot">${data.reply}<div class="text-xs text-muted mt-4" style="opacity:.6">Powered by ${data.model}</div></div>`;
+  } catch (err) {
+    typing.remove();
+    box.innerHTML += `<div class="msg msg-bot">I'm currently undergoing maintenance. Please try again later.</div>`;
+  }
+  box.scrollTop = box.scrollHeight;
+}
+    
+    const maxM = Math.max(...displayMonths.map(m => stats.monthly[m] || 0), 10);
+    mc.innerHTML = displayMonths.map((m, i) => {
+      const val = stats.monthly[m] || 0;
+      return `
+        <div class="bar-col">
+          <div class="bar-fill" style="height:${(val/maxM*100)}%;background:${i===displayMonths.length-1?'var(--accent)':'var(--navy)'};min-height:2px" data-val="${val}"></div>
+          <span class="bar-lbl">${m}<br><strong style="color:var(--navy)">${val}</strong></span>
+        </div>`;
+    }).join('');
+
+    // 2. Type Progress
+    const types = Object.entries(stats.by_type).sort((a,b)=>b[1]-a[1]).slice(0,5);
+    const typeMax = types[0] ? types[0][1] : 10;
+    const colors = ['var(--navy)','var(--sky)','var(--accent)','var(--red)','var(--green)'];
+    tc.innerHTML = types.map((t, i) => `
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;font-size:.79rem;margin-bottom:4px"><span>${t[0]}</span><strong>${t[1]}</strong></div>
+        <div class="progress"><div class="progress-bar" style="width:${t[1]/typeMax*100}%;background:${colors[i]||'var(--blue)'}"></div></div>
+      </div>`).join('');
+
+    // 3. District Progress
+    const dists = Object.entries(stats.by_district).sort((a,b)=>b[1]-a[1]).slice(0,7);
+    const distMax = dists[0] ? dists[0][1] : 10;
+    dc.innerHTML = dists.map(d => `
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:.79rem;margin-bottom:4px"><span>${d[0]}</span><strong>${d[1]}</strong></div>
+        <div class="progress"><div class="progress-bar" style="width:${d[1]/distMax*100}%;background:var(--blue)"></div></div>
+      </div>`).join('');
+
+    document.getElementById('totalCaseStat').textContent = stats.total_cases;
+    document.getElementById('pendingCaseStat').textContent = stats.by_status['Pending'] || 0;
+    document.getElementById('resolvedCaseStat').textContent = stats.by_status['Resolved'] || 0;
+
+  } catch (err) {
+    console.error('Stats fetch error:', err);
+  }
+}
+
+/* ─── DATA EXPORT ─── */
+function exportToCSV(data, filename) {
+  if (!data || !data.length) return;
+  const cols = Object.keys(data[0]);
+  const rows = [cols.join(',')];
+  data.forEach(item => {
+    rows.push(cols.map(c => `"${String(item[c]||'').replace(/"/g, '""')}"`).join(','));
+  });
+  const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.setAttribute('hidden', '');
+  a.setAttribute('href', url);
+  a.setAttribute('download', filename + '_' + new Date().toISOString().slice(0,10) + '.csv');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('Report generated and downloaded','success');
+}
+
+/* ─── TOAST ─── */
+function showToast(msg,type='success'){
+  const t=document.getElementById('toaster');
+  const icons={success:'fa-check-circle',warn:'fa-exclamation-triangle',info:'fa-info-circle'};
+  const div=document.createElement('div');
+  div.className=`toast ${type}`;
+  div.innerHTML=`<i class="fas ${icons[type]}"></i> ${msg}`;
+  t.appendChild(div);
+  setTimeout(()=>{div.style.animation='none';div.style.opacity='0';div.style.transform='translateX(24px)';div.style.transition='all .3s ease';setTimeout(()=>div.remove(),300);},4000);
+}
+
+/* ─── CHATBOT ─── */
+const BOT={
+  'file':'To file a case, click <strong>"File Case"</strong> in the navigation. You will need your Aadhaar number, survey details, land documents (Patta/Chitta), and a description of the dispute.',
+  'case':'Enter your Case ID (e.g., <strong>LL2026001</strong>) on the <strong>"Case Status"</strong> page to see real-time updates, hearing dates, and officer details.',
+  'track':'Enter your Case ID on the <strong>"Case Status"</strong> page. Try <strong>LL2026001</strong> or <strong>LL2026002</strong> as demo cases.',
+  'document':'Required documents: Aadhaar/Voter ID, Patta/Chitta record, FMB Survey Sketch, Sale Deed/Gift Deed, Encumbrance Certificate, and any prior court orders.',
+  'hearing':'Hearing dates are displayed on the Case Status page under "Next Hearing". You will also receive an SMS reminder 48 hours before the hearing.',
+  'fee':'Filing a case online is <strong>free of charge</strong>. Court fees (if applicable) can be paid online via UPI, net banking, or debit card at the hearing stage.',
+  'status':'Use the Case Status page and enter your Case ID. The system shows current status, timeline, and upcoming hearings.',
+  'login':'Click <strong>Login</strong> in the top navigation. Citizens can use their mobile number or Aadhaar; officers use their Employee Code.',
+  'aadhaar':'Your Aadhaar is used for identity verification only. It is processed securely as per UIDAI guidelines and not stored in plain text.',
+  'password':'If you forgot your password, click <strong>"Forgot password?"</strong> on the Login page. An OTP will be sent to your registered Aadhaar-linked mobile.',
+  'contact':'You can reach us at: <strong>1800-200-0080</strong> (Toll-Free), <strong>support@dllms.gov.in</strong>, or visit the Contact page for office addresses.',
+  default:'Thank you for your question! For detailed assistance, call our helpdesk at <strong>1800-200-0080</strong> (Mon–Sat, 09:00–18:00 IST) or email <strong>support@dllms.gov.in</strong>.'
+};
+let chatOpen=false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatWin').classList.toggle('open',chatOpen);
+  document.getElementById('chatBadge').style.display=chatOpen?'none':'flex';
+  if(chatOpen)document.getElementById('chatInput').focus();
+}
+function quickChat(msg){document.getElementById('chatInput').value=msg;sendChat();}
+function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const msg=inp.value.trim();if(!msg)return;
+  const msgs=document.getElementById('chatMsgs');
+  msgs.innerHTML+=`<div class="msg msg-user">${msg}</div>`;
+  inp.value='';
+  msgs.scrollTop=msgs.scrollHeight;
+  // Typing indicator
+  const typing=document.createElement('div');typing.className='msg msg-typing';
+  typing.innerHTML='<span></span><span></span><span></span>';msgs.appendChild(typing);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    typing.remove();
+    const key=Object.keys(BOT).find(k=>msg.toLowerCase().includes(k)&&k!=='default');
+    const reply=BOT[key]||BOT.default;
+    msgs.innerHTML+=`<div class="msg msg-bot">${reply}</div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+  },900);
+}
+
+/* ─── FAQ ─── */
+function toggleFaq(btn){
+  const ans=btn.nextElementSibling;
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-q i').forEach(i=>i.style.transform='');
+  if(!isOpen){ans.classList.add('open');btn.querySelector('i').style.transform='rotate(180deg)';}
+}
+
+/* ─── INFO MODAL ─── */
+function showModal(title,body){
+  document.getElementById('infoTitle').textContent=title;
+  document.getElementById('infoBody').textContent=body;
+  document.getElementById('infoModal').classList.add('open');
+}
+
+/* ─── AADHAAR FORMATTER ─── */
+function formatAadhaar(inp){
+  let v=inp.value.replace(/\D/g,'').substring(0,12);
+  let out='';
+  for(let i=0;i<v.length;i++){if(i===4||i===8)out+=' ';out+=v[i];}
+  inp.value=out;
+}
+
+/* ─── CLOSE MODALS ON OVERLAY CLICK ─── */
+document.addEventListener('click',e=>{
+  if(e.target.classList.contains('modal-overlay')){
+    e.target.classList.remove('open');
+  }
+});
+
+/* ─── KEYBOARD ACCESSIBILITY ─── */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));
+    if(chatOpen)toggleChat();
+  }
+});
+
+/* ─── INIT ─── */
+window.addEventListener('DOMContentLoaded',()=>{
+  initData();
+  // Animate hero stats counter
+  const targets=[247,89,32,3.2];
+  const ids=['cnt-total','cnt-res','cnt-dist','cnt-days'];
+  targets.forEach((t,i)=>{
+    const el=document.getElementById(ids[i]);
+    if(!el)return;
+    let start=0;const dur=1800;const step=t/dur*16;
+    const timer=setInterval(()=>{
+      start+=step;
+      if(start>=t){start=t;clearInterval(timer);}
+      el.textContent=i===3?start.toFixed(1):Math.floor(start)+(i===0?'+':'');
+    },16);
+  });
+  // Navbar responsive: close on outside click
+  document.addEventListener('click',e=>{
+    const nav=document.getElementById('navLinks');
+    const ham=document.getElementById('hamburger');
+    if(!nav.contains(e.target)&&!ham.contains(e.target)&&nav.classList.contains('open')){
+      nav.classList.remove('open');
+      document.getElementById('hamburgerIcon').className='fas fa-bars';
+    }
+  });
+});
+</script>
+</body>
+</html>

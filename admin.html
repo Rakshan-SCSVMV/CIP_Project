@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Litigation - Secure Official Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+    <header class="gov-header">
+        <div class="main-header">
+            <div class="logo-area">
+                <div class="brand-titles">
+                    <h1>Secure Official Dashboard</h1>
+                    <p>Department of Revenue and Land Settlement</p>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="/index.html">Public Portal</a>
+                <button id="admin-logout-btn" class="btn-primary" style="background-color: var(--status-red);">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card" style="margin-top: 40px; text-align: center;">
+            <h2>Welcome to the Secure Configuration Console</h2>
+            <p>From here, authorized officials can Add, Edit, or Revoke provisional land registry details before final court settlement.</p>
+            
+            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center;">
+                <button class="btn-primary" onclick="alert('Feature unlocked in production: Integrate directly with local sub-registrar DB.')">Sync Sub-Registrar Database</button>
+                <button class="btn-submit" onclick="alert('Proceed to enter manual dispute records.')">Log New Dispute</button>
+            </div>
+            
+            <br/><br/>
+            <div class="dossier-warning">
+                ⚠️ All actions are logged and subject to continuous audit. Unauthorized modifications are punishable under IT Act Section 84.
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('adminToken');
+            if(!token) {
+                alert('403 Forbidden. Redirecting to Public Portal.');
+                window.location.href = '/index.html';
+            }
+            
+            document.getElementById('admin-logout-btn').addEventListener('click', () => {
+                localStorage.removeItem('adminToken');
+                window.location.href = '/index.html';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+{
+  "Andhra Pradesh": {
+    "Visakhapatnam": [
+      "Gajuwaka",
+      "Madhurawada",
+      "Seethammadhara",
+      "Anakapalle"
+    ],
+    "Vijayawada": [
+      "Benz Circle",
+      "Patamata",
+      "Gunadala",
+      "Gollapudi"
+    ],
+    "Tirupati": [
+      "Renigunta",
+      "Chittoor Road",
+      "Alipiri"
+    ]
+  },
+  "Arunachal Pradesh": {
+    "Itanagar": [
+      "Ganga Market",
+      "Naharlagun",
+      "Nirjuli"
+    ],
+    "Tawang": [
+      "Tawang Town",
+      "Lumla",
+      "Jang"
+    ]
+  },
+  "Assam": {
+    "Guwahati": [
+      "Dispur",
+      "Paltan Bazaar",
+      "Six Mile",
+      "Maligaon"
+    ],
+    "Dibrugarh": [
+      "Chowkidingee",
+      "Milan Nagar",
+      "Barbaruah"
+    ]
+  },
+  "Bihar": {
+    "Patna": [
+      "Kankarbagh",
+      "Patliputra Colony",
+      "Boring Road",
+      "Danapur"
+    ],
+    "Gaya": [
+      "Bodh Gaya",
+      "Magadh University",
+      "Civil Lines"
+    ],
+    "Muzaffarpur": [
+      "Mithanpura",
+      "Bairia",
+      "Ahiyapur"
+    ]
+  },
+  "Chhattisgarh": {
+    "Raipur": [
+      "Naya Raipur",
+      "Tatibandh",
+      "Shankar Nagar"
+    ],
+    "Bilaspur": [
+      "Tifra",
+      "Koni",
+      "Sarkanda"
+    ]
+  },
+  "Goa": {
+    "North Goa": [
+      "Panaji",
+      "Mapusa",
+      "Calangute",
+      "Ponda"
+    ],
+    "South Goa": [
+      "Margao",
+      "Vasco da Gama",
+      "Canacona"
+    ]
+  },
+  "Gujarat": {
+    "Ahmedabad": [
+      "Satellite",
+      "Vastrapur",
+      "Prahlad Nagar",
+      "Bopal",
+      "Naroda"
+    ],
+    "Surat": [
+      "Adajan",
+      "Vesu",
+      "Varachha",
+      "Katargam"
+    ],
+    "Vadodara": [
+      "Alkapuri",
+      "Sayajigunj",
+      "Gotri",
+      "Manjalpur"
+    ]
+  },
+  "Haryana": {
+    "Gurugram": [
+      "DLF Phase 1",
+      "Sushant Lok",
+      "Sector 56",
+      "Cyber City"
+    ],
+    "Faridabad": [
+      "Nit",
+      "Ballabgarh",
+      "Greater Faridabad"
+    ],
+    "Panipat": [
+      "Model Town",
+      "Samalkha"
+    ]
+  },
+  "Himachal Pradesh": {
+    "Shimla": [
+      "Mall Road",
+      "Kasumpti",
+      "Chhota Shimla"
+    ],
+    "Dharamshala": [
+      "McLeod Ganj",
+      "Sidhabari",
+      "Yol"
+    ]
+  },
+  "Jharkhand": {
+    "Ranchi": [
+      "Hinoo",
+      "Kanke",
+      "Bariatu",
+      "Dhurwa"
+    ],
+    "Jamshedpur": [
+      "Bistupur",
+      "Sakchi",
+      "Telco Colony"
+    ]
+  },
+  "Karnataka": {
+    "Bangalore Urban": [
+      "Whitefield",
+      "Koramangala",
+      "Indiranagar",
+      "Jayanagar",
+      "HSR Layout",
+      "Electronic City"
+    ],
+    "Mysuru": [
+      "Gokulam",
+      "Saraswathipuram",
+      "Vijayanagar",
+      "Hebbal"
+    ],
+    "Mangaluru": [
+      "Kadri",
+      "Bejai",
+      "Surathkal",
+      "Ullal"
+    ]
+  },
+  "Kerala": {
+    "Thiruvananthapuram": [
+      "Vazhuthacaud",
+      "Pattom",
+      "Kazhakkoottam"
+    ],
+    "Kochi": [
+      "Edappally",
+      "Kakkanad",
+      "Fort Kochi",
+      "Panampilly Nagar"
+    ],
+    "Kozhikode": [
+      "Medical College",
+      "West Hill",
+      "Nallalam"
+    ]
+  },
+  "Madhya Pradesh": {
+    "Indore": [
+      "Vijay Nagar",
+      "Rajwada",
+      "Palasia",
+      "Bhawarkua"
+    ],
+    "Bhopal": [
+      "Arera Colony",
+      "BHEL",
+      "Kolar Road",
+      "MP Nagar"
+    ],
+    "Gwalior": [
+      "Lashkar",
+      "Morar",
+      "City Centre"
+    ]
+  },
+  "Maharashtra": {
+    "Mumbai Suburban": [
+      "Andheri",
+      "Bandra",
+      "Borivali",
+      "Goregaon",
+      "Juhu",
+      "Powai"
+    ],
+    "Pune": [
+      "Kothrud",
+      "Hinjewadi",
+      "Viman Nagar",
+      "Baner",
+      "Kharadi",
+      "Hadapsar"
+    ],
+    "Nagpur": [
+      "Sitabuldi",
+      "Dharampeth",
+      "Sadar",
+      "Manish Nagar"
+    ],
+    "Thane": [
+      "Ghodbunder Road",
+      "Majiwada",
+      "Vartak Nagar"
+    ]
+  },
+  "Manipur": {
+    "Imphal West": [
+      "Lamphelpat",
+      "Uripok",
+      "Sagolband"
+    ],
+    "Imphal East": [
+      "Porompat",
+      "Khurai"
+    ]
+  },
+  "Meghalaya": {
+    "East Khasi Hills": [
+      "Shillong",
+      "Laitumkhrah",
+      "Police Bazar"
+    ],
+    "West Garo Hills": [
+      "Tura",
+      "Phulbari"
+    ]
+  },
+  "Mizoram": {
+    "Aizawl": [
+      "Zarkawt",
+      "Mission Veng",
+      "Bawngkawn"
+    ],
+    "Lunglei": [
+      "Chanmari",
+      "Venglai"
+    ]
+  },
+  "Nagaland": {
+    "Kohima": [
+      "High School",
+      "P.R. Hill",
+      "BOC"
+    ],
+    "Dimapur": [
+      "Purana Bazar",
+      "Chumukedima"
+    ]
+  },
+  "Odisha": {
+    "Khordha": [
+      "Bhubaneswar",
+      "Jatni",
+      "Khurda Town"
+    ],
+    "Cuttack": [
+      "Link Road",
+      "Chandi Chhaka",
+      "CDA Colony"
+    ]
+  },
+  "Punjab": {
+    "Ludhiana": [
+      "Model Town",
+      "Sarabha Nagar",
+      "Civil Lines"
+    ],
+    "Amritsar": [
+      "Golden Temple Area",
+      "Ranjit Avenue",
+      "Putlighar"
+    ],
+    "Chandigarh": [
+      "Sector 17",
+      "Sector 35",
+      "Sector 22"
+    ]
+  },
+  "Rajasthan": {
+    "Jaipur": [
+      "Malviya Nagar",
+      "Vaishali Nagar",
+      "Mansarovar",
+      "C-Scheme"
+    ],
+    "Jodhpur": [
+      "Shastri Nagar",
+      "Sardarpura",
+      "Ratanada"
+    ],
+    "Udaipur": [
+      "Hiran Magri",
+      "Fatehsagar",
+      "Panchwati"
+    ]
+  },
+  "Sikkim": {
+    "East Sikkim": [
+      "Gangtok",
+      "Ranipool",
+      "Pakyong"
+    ],
+    "South Sikkim": [
+      "Namchi",
+      "Ravangla"
+    ]
+  },
+  "Tamil Nadu": {
+    "Chennai": [
+      "Kovur",
+      "Tambaram",
+      "Guindy",
+      "Velachery",
+      "Adyar",
+      "Mylapore",
+      "Anna Nagar",
+      "T-Nagar"
+    ],
+    "Coimbatore": [
+      "Peelamedu",
+      "Singanallur",
+      "RS Puram",
+      "Sulur",
+      "Anaimalai",
+      "Gandhipuram"
+    ],
+    "Madurai": [
+      "Anna Nagar",
+      "Tallakulam",
+      "Avaniyapuram",
+      "Melur",
+      "Usilampatti",
+      "Koodal Nagar"
+    ]
+  },
+  "Telangana": {
+    "Hyderabad": [
+      "Gachibowli",
+      "Banjara Hills",
+      "Jubilee Hills",
+      "Kukatpally",
+      "Madhapur",
+      "Uppal"
+    ],
+    "Warangal": [
+      "Hanamkonda",
+      "Kazipet",
+      "Subedari"
+    ]
+  },
+  "Tripura": {
+    "West Tripura": [
+      "Agartala",
+      "Banamalipur",
+      "Ramnagar"
+    ],
+    "Dhalai": [
+      "Ambassa",
+      "Kamalpur"
+    ]
+  },
+  "Uttar Pradesh": {
+    "Lucknow": [
+      "Gomti Nagar",
+      "Hazratganj",
+      "Aliganj",
+      "Indira Nagar"
+    ],
+    "Kanpur": [
+      "Civil Lines",
+      "Swaroop Nagar",
+      "Kidwai Nagar"
+    ],
+    "Varanasi": [
+      "Lanka",
+      "Sigra",
+      "Cantt Area"
+    ],
+    "Gautam Buddha Nagar": [
+      "Noida Sector 62",
+      "Greater Noida",
+      "Noida Sector 18"
+    ]
+  },
+  "Uttarakhand": {
+    "Dehradun": [
+      "Rajpur Road",
+      "Mussoorie",
+      "Clement Town"
+    ],
+    "Haridwar": [
+      "Kankhal",
+      "Jwalapur",
+      "Har ki Pauri"
+    ]
+  },
+  "West Bengal": {
+    "Kolkata": [
+      "Salt Lake",
+      "New Town",
+      "Ballygunge",
+      "Alipore",
+      "Dum Dum"
+    ],
+    "North 24 Parganas": [
+      "Bidhannagar",
+      "Barasat",
+      "Barrackpore"
+    ],
+    "Darjeeling": [
+      "Siliguri",
+      "Kurseong",
+      "Kalimpong"
+    ]
+  },
+  "Delhi": {
+    "New Delhi": [
+      "Connaught Place",
+      "Chanakyapuri",
+      "Hauz Khas",
+      "RK Puram"
+    ],
+    "South Delhi": [
+      "Saket",
+      "Vasant Kunj",
+      "Greater Kailash",
+      "Lajpat Nagar",
+      "Malviya Nagar"
+    ],
+    "North Delhi": [
+      "Civil Lines",
+      "Rohini",
+      "Model Town",
+      "Pitampura"
+    ]
+  },
+  "Jammu & Kashmir": {
+    "Srinagar": [
+      "Lal Chowk",
+      "Dal Lake",
+      "Sonwar"
+    ],
+    "Jammu": [
+      "Gandhi Nagar",
+      "Trikuta Nagar",
+      "Bari Brahmana"
+    ]
+  },
+  "Ladakh": {
+    "Leh": [
+      "Main Bazar",
+      "Chanspa",
+      "Sankar"
+    ],
+    "Kargil": [
+      "Main Market",
+      "Baroo"
+    ]
+  },
+  "Puducherry": {
+    "Puducherry": [
+      "White Town",
+      "Heritage Town",
+      "Oulgaret"
+    ],
+    "Karaikal": [
+      "Karaikal Town",
+      "Neravy"
+    ]
+  }
+}
